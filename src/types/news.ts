@@ -13,6 +13,9 @@ export interface WordPressNews {
   date: string;
   categories: number[];
   featured_media: number; // 特色图片媒体ID
+  // 🆕 Polylang 字段
+  polylang_lang?: string; // 文章语言
+  polylang_translations?: Record<string, number>; // 翻译关系 {语言代码: 文章ID}
   acf: {
     title_en: string;
     excerpt_en: string;
@@ -47,6 +50,9 @@ export interface NewsItem {
   contentEn?: string; // 可选 - 列表页不包含，详情页包含
   image: string;
   featured: boolean;
+  // 🆕 Polylang 字段
+  language?: string; // 文章语言
+  translations?: Record<string, number>; // 翻译关系 {语言代码: 文章ID}
 }
 
 // 分类类型

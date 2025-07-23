@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { NewsItem } from '../types/news';
 import { newsService } from '../services/newsService';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export const useNewsDetail = (id: number) => {
+  const { language } = useLanguage();
   const [newsItem, setNewsItem] = useState<NewsItem | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -14,7 +16,7 @@ export const useNewsDetail = (id: number) => {
       try {
         setLoading(true);
         setError(null);
-        const item = await newsService.getNewsDetail(id);
+        const item = await newsService.getNewsDetail(id, language);
         setNewsItem(item);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Unknown error occurred');
@@ -25,7 +27,7 @@ export const useNewsDetail = (id: number) => {
     };
 
     fetchNewsDetail();
-  }, [id]);
+  }, [id, language]);
 
   const retry = () => {
     if (id) {
@@ -33,7 +35,7 @@ export const useNewsDetail = (id: number) => {
         try {
           setLoading(true);
           setError(null);
-          const item = await newsService.getNewsDetail(id);
+          const item = await newsService.getNewsDetail(id, language);
           setNewsItem(item);
         } catch (err) {
           setError(err instanceof Error ? err.message : 'Unknown error occurred');

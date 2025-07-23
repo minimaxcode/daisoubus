@@ -19,9 +19,10 @@ const NewsDetail: React.FC = () => {
       
       try {
         setLoading(true);
+        // 🆕 传递当前语言参数
         const [newsDetail, categoriesData] = await Promise.all([
-          newsService.getNewsDetail(parseInt(id)),
-          newsService.getCategories()
+          newsService.getNewsDetail(parseInt(id), language),
+          newsService.getCategories(language)
         ]);
         setNews(newsDetail);
         setCategories(categoriesData);
@@ -33,7 +34,7 @@ const NewsDetail: React.FC = () => {
     };
 
     fetchNewsDetail();
-  }, [id]);
+  }, [id, language]); // 🆕 当语言改变时重新获取数据
 
   const getCategoryColor = (category: string) => {
     const colors = {

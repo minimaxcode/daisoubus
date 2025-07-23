@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { NewsItem, NewsCategory, NewsResponse } from '../types/news';
 import { newsService } from '../services/newsService';
+import { useLanguage } from '../contexts/LanguageContext'; // 🆕 导入语言上下文
 
 export const useNews = (): NewsResponse & { 
   lastUpdated: Date | null;
   retry: () => void;
 } => {
+  const { language } = useLanguage(); // 🆕 获取当前语言
   const [news, setNews] = useState<NewsItem[]>([]);
   const [categories, setCategories] = useState<NewsCategory[]>([]);
   const [loading, setLoading] = useState(true);
@@ -17,10 +19,10 @@ export const useNews = (): NewsResponse & {
       setLoading(true);
       setError(null);
       
-      // 并行获取新闻和分类数据
+      // 🆕 并行获取新闻和分类数据，传递当前语言
       const [newsData, categoryData] = await Promise.all([
-        newsService.getNews(),
-        newsService.getCategories()
+        newsService.getNews(language),
+        newsService.getCategories(language)
       ]);
       
       setNews(newsData);
@@ -46,7 +48,7 @@ export const useNews = (): NewsResponse & {
 
   useEffect(() => {
     fetchNewsData();
-  }, []);
+  }, [language]); // 🆕 当语言改变时重新获取数据
 
   const retry = () => {
     fetchNewsData();
@@ -62,8 +64,9 @@ export const useNews = (): NewsResponse & {
   };
 };
 
-// 获取单篇新闻的Hook
+// 获取单篇新闻的Hook（支持语言参数）
 export const useNewsById = (id: number) => {
+  const { language } = useLanguage(); // 🆕 获取当前语言
   const [news, setNews] = useState<NewsItem | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -73,7 +76,8 @@ export const useNewsById = (id: number) => {
       try {
         setLoading(true);
         setError(null);
-        const newsData = await newsService.getNewsById(id);
+        // 🆕 传递当前语言参数
+        const newsData = await newsService.getNewsDetail(id, language);
         setNews(newsData);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Error fetching news');
@@ -85,7 +89,7 @@ export const useNewsById = (id: number) => {
     if (id) {
       fetchNews();
     }
-  }, [id]);
+  }, [id, language]); // 🆕 当语言改变时重新获取数据
 
   return { news, loading, error };
 }; 
