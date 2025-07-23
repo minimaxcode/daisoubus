@@ -81,7 +81,7 @@ const Contact: React.FC = () => {
           <div className="lg:col-span-1">
             <div className="bg-white rounded-2xl shadow-lg p-8 sticky top-8">
               <h2 className="text-2xl font-bold text-daisou-text mb-6">
-                お問い合わせ先
+                {t('contact.info.title')}
               </h2>
               
               <div className="space-y-6">
@@ -90,9 +90,9 @@ const Contact: React.FC = () => {
                     <Phone className="h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-daisou-text mb-1">電話番号</h3>
+                    <h3 className="font-semibold text-daisou-text mb-1">{t('contact.info.phone')}</h3>
                     <p className="text-gray-600">TEL: +81-471-61-2355</p>
-                    <p className="text-gray-600">携帯: 080-6588-4932（澤村）</p>
+                    <p className="text-gray-600">{t('contact.info.mobile')}</p>
                   </div>
                 </div>
 
@@ -101,7 +101,7 @@ const Contact: React.FC = () => {
                     <Mail className="h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-daisou-text mb-1">メール</h3>
+                    <h3 className="font-semibold text-daisou-text mb-1">{t('contact.info.email')}</h3>
                     <p className="text-gray-600">c.sawamura55@gmail.com</p>
                   </div>
                 </div>
@@ -111,10 +111,14 @@ const Contact: React.FC = () => {
                     <MapPin className="h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-daisou-text mb-1">住所</h3>
+                    <h3 className="font-semibold text-daisou-text mb-1">{t('contact.info.address')}</h3>
                     <p className="text-gray-600">
-                      〒270-1102<br />
-                      千葉県我孫子市都12-31
+                      {t('contact.info.address.detail').split('\n').map((line, index) => (
+                        <span key={index}>
+                          {line}
+                          {index < t('contact.info.address.detail').split('\n').length - 1 && <br />}
+                        </span>
+                      ))}
                     </p>
                   </div>
                 </div>
@@ -124,10 +128,14 @@ const Contact: React.FC = () => {
                     <Clock className="h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-daisou-text mb-1">営業時間</h3>
+                    <h3 className="font-semibold text-daisou-text mb-1">{t('contact.hours')}</h3>
                     <p className="text-gray-600">
-                      平日 9:00-17:00<br />
-                      土日祝 応相談
+                      {t('contact.hours.detail').split('\n').map((line, index) => (
+                        <span key={index}>
+                          {line}
+                          {index < t('contact.hours.detail').split('\n').length - 1 && <br />}
+                        </span>
+                      ))}
                     </p>
                   </div>
                 </div>
@@ -135,7 +143,7 @@ const Contact: React.FC = () => {
 
               {/* SNS Links */}
               <div className="mt-8 pt-6 border-t border-gray-200">
-                <h3 className="font-semibold text-daisou-text mb-4">SNS</h3>
+                <h3 className="font-semibold text-daisou-text mb-4">{t('contact.sns')}</h3>
                 <div className="space-y-2">
                   <p className="text-gray-600">LINE: fanta0505</p>
                   <p className="text-gray-600">WeChat: pandababy20</p>
@@ -151,14 +159,14 @@ const Contact: React.FC = () => {
               {/* Form Type Selector */}
               <div className="mb-8">
                 <h2 className="text-2xl font-bold text-daisou-text mb-6">
-                  お問い合わせフォーム
+                  {t('contact.form.title')}
                 </h2>
                 
                 <div className="flex flex-wrap gap-2 mb-6">
                   {[
-                    { key: 'general', label: '一般問い合わせ' },
-                    { key: 'group', label: '団体予約' },
-                    { key: 'corporate', label: '法人専用' }
+                    { key: 'general', label: t('contact.form.type.general') },
+                    { key: 'group', label: t('contact.form.type.group') },
+                    { key: 'corporate', label: t('contact.form.type.corporate') }
                   ].map((type) => (
                     <button
                       key={type.key}
@@ -240,7 +248,7 @@ const Contact: React.FC = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-daisou-text mb-2">
-                        ご利用予定日
+                        {t('contact.form.date')}
                       </label>
                       <input
                         type="date"
@@ -253,7 +261,7 @@ const Contact: React.FC = () => {
 
                     <div>
                       <label className="block text-sm font-medium text-daisou-text mb-2">
-                        参加人数
+                        {t('contact.form.participants')}
                       </label>
                       <input
                         type="number"
@@ -269,14 +277,14 @@ const Contact: React.FC = () => {
                 {formType === 'group' && (
                   <div>
                     <label className="block text-sm font-medium text-daisou-text mb-2">
-                      目的地・ルート
+                      {t('contact.form.destination')}
                     </label>
                     <input
                       type="text"
                       name="destination"
                       value={formData.destination}
                       onChange={handleInputChange}
-                      placeholder="例：成田空港 → 東京スカイツリー → ホテル"
+                      placeholder={t('contact.form.destination.placeholder')}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-daisou-accent focus:border-transparent transition-colors"
                     />
                   </div>
@@ -293,9 +301,9 @@ const Contact: React.FC = () => {
                     required
                     rows={6}
                     placeholder={
-                      formType === 'general' ? 'ご質問やご要望をお聞かせください' :
-                      formType === 'group' ? 'ご利用目的、詳細なスケジュール、特別なご要望などをお聞かせください' :
-                      '法人向けサービスに関するお問い合わせ内容をお聞かせください'
+                      formType === 'general' ? t('contact.form.placeholder.general') :
+                      formType === 'group' ? t('contact.form.placeholder.group') :
+                      t('contact.form.placeholder.corporate')
                     }
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-daisou-accent focus:border-transparent transition-colors"
                   />
@@ -313,20 +321,20 @@ const Contact: React.FC = () => {
                     ) : (
                       <Send className="h-5 w-5 mr-2" />
                     )}
-                    {isSubmitting ? '送信中...' : t('contact.submit')}
+                    {isSubmitting ? t('contact.form.submitting') : t('contact.submit')}
                   </button>
                 </div>
                 
                 {submitStatus === 'success' && (
                   <div className="flex items-center justify-center mt-4 p-4 bg-green-50 text-green-700 rounded-lg">
                     <CheckCircle className="h-5 w-5 mr-3" />
-                    <p>お問い合わせありがとうございます。2営業日以内にご返信いたします。</p>
+                    <p>{t('contact.form.success')}</p>
                   </div>
                 )}
                 {submitStatus === 'error' && (
                   <div className="flex items-center justify-center mt-4 p-4 bg-red-50 text-red-700 rounded-lg">
                     <XCircle className="h-5 w-5 mr-3" />
-                    <p>申し訳ありません、送信に失敗しました。時間をおいて再度お試しください。</p>
+                    <p>{t('contact.form.error')}</p>
                   </div>
                 )}
               </form>
@@ -338,17 +346,17 @@ const Contact: React.FC = () => {
         <div className="mt-16 bg-red-50 border border-red-200 rounded-2xl p-8">
           <div className="text-center">
             <h3 className="text-2xl font-bold text-red-700 mb-4">
-              緊急時・お急ぎの場合
+              {t('contact.emergency.title')}
             </h3>
             <p className="text-red-600 mb-4">
-              当日の緊急連絡や至急のご相談は、直接お電話ください。
+              {t('contact.emergency.description')}
             </p>
             <a
               href="tel:+81-80-6588-4932"
               className="inline-flex items-center justify-center px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-full transition-colors duration-200"
             >
               <Phone className="h-5 w-5 mr-2" />
-              080-6588-4932（澤村）に電話する
+              {t('contact.emergency.call')}
             </a>
           </div>
         </div>

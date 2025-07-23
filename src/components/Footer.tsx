@@ -67,7 +67,7 @@ const Footer: React.FC = () => {
 
           {/* Column 2: Services */}
           <div>
-            <h4 className="text-base font-semibold mb-4 tracking-wider uppercase">{language === 'ja' ? 'サービス' : 'Services'}</h4>
+            <h4 className="text-base font-semibold mb-4 tracking-wider uppercase">{t('footer.services.title')}</h4>
             <ul className="space-y-3">
               {serviceLinks.map(link => (
                 <li key={link.path}>
@@ -81,7 +81,7 @@ const Footer: React.FC = () => {
 
           {/* Column 3: About Us */}
           <div>
-            <h4 className="text-base font-semibold mb-4 tracking-wider uppercase">{language === 'ja' ? '会社情報' : 'About Us'}</h4>
+            <h4 className="text-base font-semibold mb-4 tracking-wider uppercase">{t('footer.about.title')}</h4>
             <ul className="space-y-3">
               {aboutLinks.map(link => (
                 <li key={link.path}>
@@ -95,20 +95,20 @@ const Footer: React.FC = () => {
 
           {/* Column 4: Contact Buttons & Social */}
           <div>
-            <h4 className="text-base font-semibold mb-4 tracking-wider uppercase">{language === 'ja' ? 'お問い合わせ' : 'Contact'}</h4>
+            <h4 className="text-base font-semibold mb-4 tracking-wider uppercase">{t('footer.contact.title')}</h4>
             <div className="space-y-3">
               <Link 
                 to="/contact" 
                 className="group inline-flex items-center justify-center w-full bg-daisou-accent hover:bg-pink-400 text-white text-center py-2.5 px-4 rounded-full transition-colors duration-200 font-semibold"
               >
-                <span>{language === 'ja' ? 'お問い合わせフォーム' : 'Contact Form'}</span>
+                <span>{t('footer.contact.form')}</span>
                 <ArrowRight className="h-4 w-4 ml-2 transform transition-transform group-hover:translate-x-1" />
               </Link>
               <Link 
                 to="/quote" 
                 className="group inline-flex items-center justify-center w-full border-2 border-daisou-accent text-daisou-accent hover:bg-daisou-accent hover:text-white text-center py-2.5 px-4 rounded-full transition-colors duration-200 font-semibold"
               >
-                <span>{language === 'ja' ? '無料お見積もり' : 'Free Quote'}</span>
+                <span>{t('footer.quote.free')}</span>
                  <ArrowRight className="h-4 w-4 ml-2 transform transition-transform group-hover:translate-x-1" />
               </Link>
             </div>

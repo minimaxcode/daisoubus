@@ -10,6 +10,7 @@ import AnalyticsTracker from './components/AnalyticsTracker'; // 导入GA追踪�
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import News from './pages/News';
+import NewsDetail from './pages/NewsDetail';
 import Fleet from './pages/Fleet';
 import Contact from './pages/Contact';
 import Company from './pages/Company';
@@ -37,6 +38,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="news" element={<News />} />
+            <Route path="news/:id" element={<NewsDetail />} />
             <Route path="fleet" element={<Fleet />} />
             <Route path="pricing" element={<Pricing />} />
             <Route path="usage" element={<Usage />} />

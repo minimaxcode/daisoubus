@@ -59,7 +59,7 @@ const Header: React.FC = () => {
             {/* More dropdown would go here for remaining items */}
             <div className="relative group">
               <button className="text-sm font-medium text-daisou-text hover:text-daisou-accent transition-colors duration-200">
-                その他
+                {t('nav.more')}
               </button>
               <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                 <div className="py-1">

@@ -65,7 +65,7 @@ const Home: React.FC = () => {
                   />
                   <div>
                     <p className="font-semibold text-daisou-text">{t('company.name')}</p>
-                    <p className="text-sm text-gray-600">Since 2019</p>
+                    <p className="text-sm text-gray-600">{t('home.company.since')}</p>
                   </div>
                 </div>
               </div>
@@ -91,25 +91,25 @@ const Home: React.FC = () => {
               {
                 icon: <Users className="h-8 w-8" />,
                 title: t('services.charter'),
-                description: '快適な貸切バスサービス',
+                description: t('services.charter.description'),
                 image: '/images/mid-size-bus.webp'
               },
               {
                 icon: <MapPin className="h-8 w-8" />,
                 title: t('services.guide'),
-                description: '観光地のご案内とプラン作成',
+                description: t('services.guide.description'),
                 image: '/images/cherry-blossom.jpg'
               },
               {
                 icon: <Shield className="h-8 w-8" />,
                 title: t('services.rental'),
-                description: '各種レンタカーサービス',
+                description: t('services.rental.description'),
                 image: '/images/narita-airport.jpg'
               },
               {
                 icon: <Clock className="h-8 w-8" />,
                 title: t('services.gym'),
-                description: 'フィットネスジム運営',
+                description: t('services.gym.description'),
                 image: '/images/team-photo.jpg'
               }
             ].map((service, index) => (
@@ -144,7 +144,7 @@ const Home: React.FC = () => {
               {t('fleet.title')}
             </h2>
             <p className="text-lg text-gray-600">
-              多様なニーズにお応えする充実の車両ラインナップ
+              {t('home.fleet.description')}
             </p>
           </div>
 
@@ -152,19 +152,19 @@ const Home: React.FC = () => {
             {[
               {
                 name: t('fleet.midsize'),
-                seats: '27座席',
+                seats: t('home.fleet.seats.27'),
                 description: t('fleet.midsize.description'),
                 image: '/images/mid-size-bus.webp'
               },
               {
-                name: 'マイクロバス (Coaster)',
-                seats: '18正座 + 5補助',
+                name: t('home.fleet.name.coaster'),
+                seats: t('home.fleet.seats.coaster'),
                 description: t('fleet.coaster.description'),
                 image: '/images/microbus-coaster.jpg'
               },
               {
-                name: 'マイクロバス (Rosa)',
-                seats: '19正座 + 5補助',
+                name: t('home.fleet.name.rosa'),
+                seats: t('home.fleet.seats.rosa'),
                 description: t('fleet.rosa.description'),
                 image: '/images/microbus-rosa.jpg'
               }
@@ -191,7 +191,7 @@ const Home: React.FC = () => {
               to="/fleet"
               className="inline-flex items-center px-8 py-3 bg-daisou-accent hover:bg-pink-400 text-white font-semibold rounded-full transition-colors duration-200"
             >
-              詳しく見る
+              {t('home.fleet.view.details')}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </div>
@@ -203,7 +203,7 @@ const Home: React.FC = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="bg-daisou-bg rounded-3xl p-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-daisou-text mb-6">
-              お気軽にお問い合わせください
+              {t('home.cta.title')}
             </h2>
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
               {t('contact.response')}

@@ -7,47 +7,47 @@ const Company: React.FC = () => {
 
   const companyHistory = [
     {
-      year: '2019年4月',
-      event: '大爽合同会社設立',
-      description: '一般貸切旅客自動車運送事業を開始'
+      year: t('company.history.2019.year'),
+      event: t('company.history.2019.event'),
+      description: t('company.history.2019.desc')
     },
     {
-      year: '2020年',
-      event: 'サービス拡充',
-      description: '観光案内・プラン作成サービスを追加'
+      year: t('company.history.2020.year'),
+      event: t('company.history.2020.event'),
+      description: t('company.history.2020.desc')
     },
     {
-      year: '2021年',
-      event: '車両増車',
-      description: 'マイクロバス2台目導入'
+      year: t('company.history.2021.year'),
+      event: t('company.history.2021.event'),
+      description: t('company.history.2021.desc')
     },
     {
-      year: '2022年',
-      event: '中型バス導入',
-      description: '27座席中型バスでサービス範囲拡大'
+      year: t('company.history.2022.year'),
+      event: t('company.history.2022.event'),
+      description: t('company.history.2022.desc')
     },
     {
-      year: '2023年',
-      event: 'インバウンド強化',
-      description: '多言語対応とVIP送迎サービス開始'
+      year: t('company.history.2023.year'),
+      event: t('company.history.2023.event'),
+      description: t('company.history.2023.desc')
     }
   ];
 
   const licenses = [
     {
-      type: '一般貸切旅客自動車運送事業',
-      number: '関東自一第 952 号',
-      authority: '関東運輸局'
+      type: t('company.licenses.charter.type'),
+      number: t('company.licenses.charter.number'),
+      authority: t('company.licenses.charter.authority')
     },
     {
-      type: 'レンタカー事業',
-      number: '千葉運輸第 58 号',
-      authority: '千葉運輸支局'
+      type: t('company.licenses.rental.type'),
+      number: t('company.licenses.rental.number'),
+      authority: t('company.licenses.rental.authority')
     },
     {
-      type: '旅行業',
-      number: '千葉第 69 号',
-      authority: '千葉県'
+      type: t('company.licenses.travel.type'),
+      number: t('company.licenses.travel.number'),
+      authority: t('company.licenses.travel.authority')
     }
   ];
 
@@ -75,26 +75,22 @@ const Company: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
               <div className="p-8 lg:p-12 flex flex-col justify-center">
                 <h2 className="text-3xl font-bold text-daisou-text mb-6">
-                  代表からのメッセージ
+                  {t('company.ceo.title')}
                 </h2>
                 <div className="space-y-4 text-gray-700 leading-relaxed">
                   <p>
-                    大爽合同会社は2019年の設立以来、「{t('company.slogan2')}」をモットーに、
-                    お客様に寄り添ったサービスを提供してまいりました。
+                    {t('company.ceo.message1').replace('{slogan}', t('company.slogan2'))}
                   </p>
                   <p>
-                    私たちは単なる移動手段の提供ではなく、お客様の大切な時間と思い出作りを
-                    全力でサポートいたします。安全・安心を第一に、心のこもったおもてなしで
-                    皆様をお迎えいたします。
+                    {t('company.ceo.message2')}
                   </p>
                   <p>
-                    今後も地域の皆様、そして日本を訪れる海外からのお客様に愛される会社として、
-                    成長を続けてまいります。
+                    {t('company.ceo.message3')}
                   </p>
                 </div>
                 <div className="mt-8">
                   <div className="text-right">
-                    <p className="text-lg font-semibold text-daisou-text">代表 澤村千凡</p>
+                    <p className="text-lg font-semibold text-daisou-text">{t('company.ceo.name')}</p>
                     <p className="text-gray-600">Chiho Sawamura</p>
                   </div>
                 </div>
@@ -102,7 +98,7 @@ const Company: React.FC = () => {
               <div className="relative h-80 lg:h-auto">
                 <img
                   src="/images/team-photo.jpg"
-                  alt="代表 澤村千凡"
+                  alt={t('company.ceo.name')}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -116,23 +112,23 @@ const Company: React.FC = () => {
           <div className="bg-white rounded-2xl shadow-lg p-8">
             <h3 className="text-2xl font-bold text-daisou-text mb-6 flex items-center">
               <Building className="h-6 w-6 text-daisou-accent mr-2" />
-              会社概要
+              {t('company.basic.title')}
             </h3>
             <div className="space-y-4">
               {[
-                { label: '会社名', value: '大爽合同会社（DAISOU LLC）' },
-                { label: '代表者', value: '澤村千凡（Chiho Sawamura）' },
-                { label: '設立', value: '2019年4月' },
-                { label: '所在地', value: '〒270-1102 千葉県我孫子市都12-31' },
-                { label: '電話番号', value: '+81-471-61-2355' },
-                { label: 'メール', value: 'c.sawamura55@gmail.com' },
-                { label: 'ウェブサイト', value: 'https://daisoubus.com' }
+                { label: t('company.basic.name'), value: t('company.basic.name.value') },
+                { label: t('company.basic.representative'), value: t('company.basic.representative.value') },
+                { label: t('company.basic.established'), value: t('company.basic.established.value') },
+                { label: t('company.basic.address'), value: t('company.basic.address.value') },
+                { label: t('company.basic.phone'), value: '+81-471-61-2355' },
+                { label: t('company.basic.email'), value: 'c.sawamura55@gmail.com' },
+                { label: t('company.basic.website'), value: 'https://daisoubus.com' }
               ].map((item, index) => (
-                <div key={index} className="flex flex-col sm:flex-row">
-                  <div className="w-24 font-semibold text-daisou-text mb-1 sm:mb-0">
+                <div key={index} className="flex flex-col sm:flex-row sm:items-start">
+                  <div className="w-auto sm:w-32 lg:w-28 xl:w-32 font-semibold text-daisou-text mb-1 sm:mb-0 sm:flex-shrink-0">
                     {item.label}
                   </div>
-                  <div className="flex-1 text-gray-700">
+                  <div className="flex-1 text-gray-700 sm:ml-4">
                     {item.value}
                   </div>
                 </div>
@@ -144,25 +140,25 @@ const Company: React.FC = () => {
           <div className="bg-white rounded-2xl shadow-lg p-8">
             <h3 className="text-2xl font-bold text-daisou-text mb-6 flex items-center">
               <Users className="h-6 w-6 text-daisou-accent mr-2" />
-              事業内容
+              {t('company.services.title')}
             </h3>
             <div className="space-y-4">
               {[
                 {
-                  service: '貸切バス事業',
-                  description: '観光・送迎・冠婚葬祭等の貸切バスサービス'
+                  service: t('company.services.charter'),
+                  description: t('company.services.charter.desc')
                 },
                 {
-                  service: '観光案内事業',
-                  description: '旅行プラン作成・観光地案内・通訳サービス'
+                  service: t('company.services.guide'),
+                  description: t('company.services.guide.desc')
                 },
                 {
-                  service: 'レンタカー事業',
-                  description: '各種車両のレンタルサービス'
+                  service: t('company.services.rental'),
+                  description: t('company.services.rental.desc')
                 },
                 {
-                  service: 'ジム運営事業',
-                  description: 'フィットネスジム運営・健康促進サービス'
+                  service: t('company.services.gym'),
+                  description: t('company.services.gym.desc')
                 }
               ].map((item, index) => (
                 <div key={index} className="border-l-4 border-daisou-accent pl-4">
@@ -179,7 +175,7 @@ const Company: React.FC = () => {
           <div className="bg-white rounded-2xl shadow-lg p-8">
             <h3 className="text-2xl font-bold text-daisou-text mb-6 flex items-center">
               <Award className="h-6 w-6 text-daisou-accent mr-2" />
-              許可・認可
+              {t('company.licenses.title')}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {licenses.map((license, index) => (
@@ -204,7 +200,7 @@ const Company: React.FC = () => {
           <div className="bg-white rounded-2xl shadow-lg p-8">
             <h3 className="text-2xl font-bold text-daisou-text mb-8 flex items-center">
               <Calendar className="h-6 w-6 text-daisou-accent mr-2" />
-              沿革
+              {t('company.history.title')}
             </h3>
             <div className="space-y-6">
               {companyHistory.map((item, index) => (
@@ -232,7 +228,7 @@ const Company: React.FC = () => {
         <div className="mb-20">
           <div className="bg-white rounded-2xl shadow-lg p-8">
             <h3 className="text-2xl font-bold text-daisou-text mb-6">
-              取引銀行
+              {t('company.banking.title')}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="flex items-center space-x-4 p-4 bg-daisou-bg rounded-xl">
@@ -240,7 +236,7 @@ const Company: React.FC = () => {
                   <span className="text-white font-bold text-lg">み</span>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-daisou-text">みずほ銀行</h4>
+                  <h4 className="font-semibold text-daisou-text">{t('company.banking.mizuho')}</h4>
                   <p className="text-gray-600 text-sm">MIZUHO Bank</p>
                 </div>
               </div>
@@ -249,7 +245,7 @@ const Company: React.FC = () => {
                   <span className="text-white font-bold text-lg">千</span>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-daisou-text">千葉銀行</h4>
+                  <h4 className="font-semibold text-daisou-text">{t('company.banking.chiba')}</h4>
                   <p className="text-gray-600 text-sm">CHIBA Bank</p>
                 </div>
               </div>
@@ -261,29 +257,32 @@ const Company: React.FC = () => {
         <div className="bg-white rounded-2xl shadow-lg p-8">
           <h3 className="text-2xl font-bold text-daisou-text mb-6 flex items-center">
             <MapPin className="h-6 w-6 text-daisou-accent mr-2" />
-            アクセス
+            {t('company.location.title')}
           </h3>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div>
-              <div className="space-y-4">
+                              <div className="space-y-4">
                 <div>
-                  <h4 className="font-semibold text-daisou-text mb-2">住所</h4>
+                  <h4 className="font-semibold text-daisou-text mb-2">{t('company.location.address.label')}</h4>
                   <p className="text-gray-700">
-                    〒270-1102<br />
-                    千葉県我孫子市都12-31
+                    {t('company.basic.address.value')}
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-daisou-text mb-2">最寄り駅</h4>
+                  <h4 className="font-semibold text-daisou-text mb-2">{t('company.location.station.label')}</h4>
                   <p className="text-gray-700">
-                    JR常磐線・成田線「我孫子駅」より車で約10分
+                    {t('company.location.station.value')}
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-daisou-text mb-2">アクセス</h4>
+                  <h4 className="font-semibold text-daisou-text mb-2">{t('company.location.access.label')}</h4>
                   <p className="text-gray-700">
-                    成田空港より車で約30分<br />
-                    東京都心より車で約1時間
+                    {t('company.location.access.value').split('\n').map((line, index) => (
+                      <span key={index}>
+                        {line}
+                        {index < t('company.location.access.value').split('\n').length - 1 && <br />}
+                      </span>
+                    ))}
                   </p>
                 </div>
               </div>

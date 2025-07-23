@@ -1,112 +1,132 @@
 import React, { useState } from 'react';
-import { Calendar, ArrowRight, Tag } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Calendar, ArrowRight, Tag, AlertCircle, Loader2, RefreshCw, Wifi, WifiOff } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useNews } from '../hooks/useNews';
 
 const News: React.FC = () => {
   const { t, language } = useLanguage();
+  const { 
+    news: newsItems, 
+    categories, 
+    loading, 
+    error, 
+    lastUpdated, 
+    retry 
+  } = useNews();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-
-  const newsItems = [
-    {
-      id: 1,
-      title: 'ホームページリニューアルのお知らせ',
-      titleEn: 'Website Renewal Announcement',
-      date: '2024-06-19',
-      category: 'お知らせ',
-      categoryEn: 'Announcement',
-      excerpt: 'より快適にご利用いただけるよう、サイトを全面リニューアルいたしました。今後も最新情報を発信してまいります。',
-      excerptEn: 'Our website has been fully renewed for a better user experience. We will continue to provide the latest information.',
-      image: '/images/tokyo-skyline.jpg',
-      featured: true
-    },
-    {
-      id: 2,
-      title: '新車両導入のお知らせ',
-      titleEn: 'New Vehicle Introduction',
-      date: '2024-05-15',
-      category: '車両情報',
-      categoryEn: 'Fleet News',
-      excerpt: '業務拡大に伴い、中型バスを1台増車いたしました。皆さまの思い出づくりを全力でサポートいたします。',
-      excerptEn: 'A brand-new mid-size coach has joined our fleet to meet growing demand.',
-      image: '/images/mid-size-bus.webp',
-      featured: true
-    },
-    {
-      id: 3,
-      title: 'ゴールデンウィーク期間の営業について',
-      titleEn: 'Golden Week Operating Hours',
-      date: '2024-04-20',
-      category: 'お知らせ',
-      categoryEn: 'Announcement',
-      excerpt: 'ゴールデンウィーク期間中（4/29-5/5）も通常通り営業いたします。ご予約はお早めにお願いいたします。',
-      excerptEn: 'We will operate as usual during Golden Week (April 29 - May 5). Please make reservations early.',
-      image: '/images/cherry-blossom.jpg',
-      featured: false
-    },
-    {
-      id: 4,
-      title: '春の桜ツアー好評開催中',
-      titleEn: 'Spring Cherry Blossom Tours',
-      date: '2024-03-25',
-      category: 'キャンペーン',
-      categoryEn: 'Campaign',
-      excerpt: '関東各地の桜の名所を巡るツアーを開催中です。満開の桜とともに、特別な思い出をお作りください。',
-      excerptEn: 'Spring cherry blossom tours to famous spots around Kanto are now available.',
-      image: '/images/cherry-blossom.jpg',
-      featured: false
-    },
-    {
-      id: 5,
-      title: '安全運転講習会を実施しました',
-      titleEn: 'Safety Driving Training Conducted',
-      date: '2024-03-10',
-      category: '安全対策',
-      categoryEn: 'Safety',
-      excerpt: '全運転者を対象とした安全運転講習会を実施し、より一層の安全意識向上を図りました。',
-      excerptEn: 'We conducted safety driving training for all drivers to further enhance safety awareness.',
-      image: '/images/safety-training.jpg',
-      featured: false
-    },
-    {
-      id: 6,
-      title: 'インバウンド向けサービスを強化',
-      titleEn: 'Enhanced Services for International Visitors',
-      date: '2024-02-20',
-      category: 'サービス',
-      categoryEn: 'Service',
-      excerpt: '海外からのお客様向けに、多言語対応とVIP送迎サービスを本格開始いたします。',
-      excerptEn: 'We are officially launching multilingual support and VIP transfer services for international visitors.',
-      image: '/images/narita-airport.jpg',
-      featured: false
-    }
-  ];
-
-  const categories = [
-    { key: 'all', label: 'すべて', labelEn: 'All' },
-    { key: 'お知らせ', label: 'お知らせ', labelEn: 'Announcements' },
-    { key: '車両情報', label: '車両情報', labelEn: 'Fleet News' },
-    { key: 'キャンペーン', label: 'キャンペーン', labelEn: 'Campaigns' },
-    { key: '安全対策', label: '安全対策', labelEn: 'Safety' },
-    { key: 'サービス', label: 'サービス', labelEn: 'Services' }
-  ];
 
   const filteredNews = selectedCategory === 'all' 
     ? newsItems 
     : newsItems.filter(item => item.category === selectedCategory);
 
   const featuredNews = newsItems.filter(item => item.featured);
-  const regularNews = newsItems.filter(item => !item.featured);
 
   const getCategoryColor = (category: string) => {
     const colors = {
-      'お知らせ': 'bg-blue-100 text-blue-800',
-      '車両情報': 'bg-green-100 text-green-800',
-      'キャンペーン': 'bg-red-100 text-red-800',
-      '安全対策': 'bg-yellow-100 text-yellow-800',
-      'サービス': 'bg-purple-100 text-purple-800'
+      'announcement': 'bg-blue-100 text-blue-800',
+      'fleet': 'bg-green-100 text-green-800',
+      'campaign': 'bg-red-100 text-red-800',
+      'safety': 'bg-yellow-100 text-yellow-800',
+      'service': 'bg-purple-100 text-purple-800'
     };
     return colors[category] || 'bg-gray-100 text-gray-800';
   };
+
+  const getCategoryLabel = (categorySlug: string) => {
+    const category = categories.find(cat => cat.key === categorySlug);
+    return category ? (language === 'ja' ? category.label : category.labelEn) : categorySlug;
+  };
+
+  // 加载状态
+  if (loading) {
+    return (
+      <div className="min-h-screen py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl lg:text-5xl font-bold text-daisou-text mb-6">
+              {t('nav.news')}
+            </h1>
+          </div>
+          <div className="flex justify-center items-center py-20">
+            <Loader2 className="h-8 w-8 animate-spin text-daisou-accent" />
+            <span className="ml-3 text-lg text-gray-600">{t('news.loading')}</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 错误状态 - 无法获取数据时的友好提示
+  if (error && newsItems.length === 0) {
+    return (
+      <div className="min-h-screen py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl lg:text-5xl font-bold text-daisou-text mb-6">
+              {t('nav.news')}
+            </h1>
+          </div>
+          
+          {/* 错误提示卡片 */}
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-white rounded-3xl shadow-xl p-12 text-center">
+              <div className="mb-8">
+                <WifiOff className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+                <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                  {t('news.error.title')}
+                </h2>
+                <p className="text-gray-600 text-lg mb-8">
+                  {t('news.error.description')}
+                </p>
+              </div>
+              
+              {/* 重试按钮 */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button
+                  onClick={retry}
+                  className="inline-flex items-center px-6 py-3 bg-daisou-accent hover:bg-pink-400 text-white font-semibold rounded-full transition-colors duration-200"
+                >
+                  <RefreshCw className="h-5 w-5 mr-2" />
+                  {t('news.error.retry')}
+                </button>
+                
+                <button
+                  onClick={() => window.location.href = '/'}
+                  className="inline-flex items-center px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-full transition-colors duration-200"
+                >
+                  {t('news.error.back.home')}
+                </button>
+              </div>
+              
+              {/* 联系信息 */}
+              <div className="mt-8 pt-8 border-t border-gray-200">
+                <p className="text-sm text-gray-500 mb-4">
+                  {t('news.error.persist')}
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center text-sm">
+                  <a 
+                    href="/contact" 
+                    className="text-daisou-accent hover:text-pink-400 font-medium transition-colors"
+                  >
+                    {t('news.error.contact')}
+                  </a>
+                  <span className="hidden sm:inline text-gray-300">|</span>
+                  <a 
+                    href="tel:03-1234-5678" 
+                    className="text-daisou-accent hover:text-pink-400 font-medium transition-colors"
+                  >
+                    {t('news.error.phone')}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
 
   return (
     <div className="min-h-screen py-12">
@@ -117,14 +137,14 @@ const News: React.FC = () => {
             {t('nav.news')}
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            大爽観光バスの最新情報をお届けします
+            {t('news.page.description')}
           </p>
         </div>
 
         {/* Featured News */}
         {featuredNews.length > 0 && (
           <div className="mb-16">
-            <h2 className="text-2xl font-bold text-daisou-text mb-8">注目のニュース</h2>
+            <h2 className="text-2xl font-bold text-daisou-text mb-8">{t('news.featured')}</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {featuredNews.map((item) => (
                 <article key={item.id} className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
@@ -136,7 +156,7 @@ const News: React.FC = () => {
                     />
                     <div className="absolute top-4 left-4">
                       <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${getCategoryColor(item.category)}`}>
-                        {language === 'ja' ? item.category : item.categoryEn}
+                        {getCategoryLabel(item.category)}
                       </span>
                     </div>
                   </div>
@@ -151,10 +171,13 @@ const News: React.FC = () => {
                     <p className="text-gray-600 mb-4 line-clamp-3">
                       {language === 'ja' ? item.excerpt : item.excerptEn}
                     </p>
-                    <button className="inline-flex items-center text-daisou-accent hover:text-pink-400 font-medium transition-colors duration-200">
-                      詳しく見る
+                    <Link 
+                      to={`/news/${item.id}`}
+                      className="inline-flex items-center text-daisou-accent hover:text-pink-400 font-medium transition-colors duration-200"
+                    >
+                      {t('news.read.more')}
                       <ArrowRight className="h-4 w-4 ml-1" />
-                    </button>
+                    </Link>
                   </div>
                 </article>
               ))}
@@ -194,7 +217,7 @@ const News: React.FC = () => {
                 <div className="absolute top-3 left-3">
                   <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getCategoryColor(item.category)}`}>
                     <Tag className="h-3 w-3 inline mr-1" />
-                    {language === 'ja' ? item.category : item.categoryEn}
+                    {getCategoryLabel(item.category)}
                   </span>
                 </div>
               </div>
@@ -209,10 +232,13 @@ const News: React.FC = () => {
                 <p className="text-gray-600 mb-4 text-sm line-clamp-3">
                   {language === 'ja' ? item.excerpt : item.excerptEn}
                 </p>
-                <button className="inline-flex items-center text-daisou-accent hover:text-pink-400 font-medium text-sm transition-colors duration-200">
-                  詳しく見る
+                <Link 
+                  to={`/news/${item.id}`}
+                  className="inline-flex items-center text-daisou-accent hover:text-pink-400 font-medium text-sm transition-colors duration-200"
+                >
+                  {t('news.read.more')}
                   <ArrowRight className="h-4 w-4 ml-1" />
-                </button>
+                </Link>
               </div>
             </article>
           ))}
@@ -221,27 +247,26 @@ const News: React.FC = () => {
         {/* No Results */}
         {filteredNews.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">該当するニュースがありません。</p>
+            <p className="text-gray-500 text-lg">{t('news.no.results')}</p>
           </div>
         )}
 
         {/* Newsletter Signup */}
         <div className="mt-20 bg-daisou-bg rounded-3xl p-12 text-center">
           <h3 className="text-2xl font-bold text-daisou-text mb-4">
-            最新情報をお届け
+            {t('news.newsletter.title')}
           </h3>
           <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-            大爽観光バスの最新ニュースやお得な情報を、メールマガジンでお届けします。
-            ご登録いただいた方には、特別割引クーポンをプレゼント！
+            {t('news.newsletter.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input
               type="email"
-              placeholder="メールアドレスを入力"
+              placeholder={t('news.newsletter.placeholder')}
               className="flex-1 px-4 py-3 border border-gray-300 rounded-full focus:ring-2 focus:ring-daisou-accent focus:border-transparent"
             />
-            <button className="px-8 py-3 bg-daisou-accent hover:bg-pink-400 text-white font-semibold rounded-full transition-colors duration-200">
-              登録する
+                          <button className="px-8 py-3 bg-daisou-accent hover:bg-pink-400 text-white font-semibold rounded-full transition-colors duration-200">
+              {t('news.newsletter.subscribe')}
             </button>
           </div>
         </div>

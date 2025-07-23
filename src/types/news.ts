@@ -1,0 +1,65 @@
+// WordPress新闻数据类型
+export interface WordPressNews {
+  id: number;
+  title: {
+    rendered: string;
+  };
+  excerpt: {
+    rendered: string;
+  };
+  content: {
+    rendered: string;
+  };
+  date: string;
+  categories: number[];
+  featured_media: number; // 特色图片媒体ID
+  acf: {
+    title_en: string;
+    excerpt_en: string;
+    content_en: string;
+    category_en: string;
+    featured: boolean;
+  };
+  _embedded?: {
+    'wp:featuredmedia'?: Array<{
+      source_url: string;
+      alt_text: string;
+    }>;
+    'wp:term'?: Array<Array<{
+      id: number;
+      name: string;
+      slug: string;
+    }>>;
+  };
+}
+
+// 应用内使用的新闻类型
+export interface NewsItem {
+  id: number;
+  title: string;
+  titleEn: string;
+  date: string;
+  category: string;
+  categoryEn: string;
+  excerpt: string;
+  excerptEn: string;
+  content?: string; // 可选 - 列表页不包含，详情页包含
+  contentEn?: string; // 可选 - 列表页不包含，详情页包含
+  image: string;
+  featured: boolean;
+}
+
+// 分类类型
+export interface NewsCategory {
+  key: string;
+  label: string;
+  labelEn: string;
+}
+
+// API响应类型
+export interface NewsResponse {
+  news: NewsItem[];
+  categories: NewsCategory[];
+  loading: boolean;
+  error: string | null;
+} 

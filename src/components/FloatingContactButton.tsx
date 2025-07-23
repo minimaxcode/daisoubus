@@ -20,7 +20,7 @@ const FloatingContactButton: React.FC = () => {
               className="flex items-center space-x-2 p-3 rounded-lg hover:bg-daisou-bg transition-colors duration-200"
             >
               <Phone className="h-5 w-5 text-daisou-accent" />
-              <span className="text-sm font-medium text-daisou-text">電話する</span>
+              <span className="text-sm font-medium text-daisou-text">{t('float.call')}</span>
             </a>
             <Link
               to="/contact"

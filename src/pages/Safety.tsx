@@ -7,92 +7,92 @@ const Safety: React.FC = () => {
 
   const safetyPolicies = [
     {
-      title: '経営方針',
-      description: '輸送の安全を事業の根幹と位置づけ、明確な目標と計画を策定。',
+      title: t('safety.policy.management.title'),
+      description: t('safety.policy.management.desc'),
       icon: <FileText className="h-8 w-8" />
     },
     {
-      title: '安全第一',
-      description: '全従業員が「人命最優先・安全第一」を徹底。',
+      title: t('safety.policy.priority.title'),
+      description: t('safety.policy.priority.desc'),
       icon: <Shield className="h-8 w-8" />
     },
     {
-      title: '法規遵守',
-      description: '交通法規遵守と環境保護を両立し、継続的に改善。',
+      title: t('safety.policy.compliance.title'),
+      description: t('safety.policy.compliance.desc'),
       icon: <CheckCircle className="h-8 w-8" />
     },
     {
-      title: '情報公開',
-      description: '安全に関する情報は社内外へ積極的に公開。',
+      title: t('safety.policy.disclosure.title'),
+      description: t('safety.policy.disclosure.desc'),
       icon: <Users className="h-8 w-8" />
     }
   ];
 
   const safetyMeasures = [
     {
-      category: '車両安全装備',
+      category: t('safety.measures.vehicle.title'),
       items: [
-        'ABS（アンチロックブレーキシステム）',
-        'エアバッグシステム',
-        'シートベルト（全席）',
-        'バックカメラ・ドライブレコーダー',
-        '非常口・非常灯',
-        '消火器・救急箱'
+        t('safety.measures.vehicle.abs'),
+        t('safety.measures.vehicle.airbag'),
+        t('safety.measures.vehicle.seatbelt'),
+        t('safety.measures.vehicle.camera'),
+        t('safety.measures.vehicle.emergency'),
+        t('safety.measures.vehicle.safety')
       ]
     },
     {
-      category: '運転者教育',
+      category: t('safety.measures.training.title'),
       items: [
-        '入社時安全研修',
-        '定期安全講習会',
-        '危険予知訓練',
-        '健康管理指導',
-        '適性診断受診',
-        'エコドライブ講習'
+        t('safety.measures.training.orientation'),
+        t('safety.measures.training.regular'),
+        t('safety.measures.training.prediction'),
+        t('safety.measures.training.health'),
+        t('safety.measures.training.aptitude'),
+        t('safety.measures.training.eco')
       ]
     },
     {
-      category: '車両点検・整備',
+      category: t('safety.measures.maintenance.title'),
       items: [
-        '日常点検（運行前後）',
-        '定期点検（法定点検）',
-        '車両清掃・消毒',
-        'タイヤ・ブレーキ点検',
-        '整備記録管理',
-        '不具合時即座対応'
+        t('safety.measures.maintenance.daily'),
+        t('safety.measures.maintenance.regular'),
+        t('safety.measures.maintenance.cleaning'),
+        t('safety.measures.maintenance.parts'),
+        t('safety.measures.maintenance.record'),
+        t('safety.measures.maintenance.response')
       ]
     }
   ];
 
   const covidMeasures = [
     {
-      title: '車両内の感染症対策',
+      title: t('safety.covid.vehicle.title'),
       measures: [
-        '運行前後の車両内消毒',
-        '座席・手すり等の清拭',
-        '換気システムの活用',
-        '乗車人数の調整',
-        '座席間隔の確保'
+        t('safety.covid.vehicle.disinfection'),
+        t('safety.covid.vehicle.cleaning'),
+        t('safety.covid.vehicle.ventilation'),
+        t('safety.covid.vehicle.capacity'),
+        t('safety.covid.vehicle.spacing')
       ]
     },
     {
-      title: '乗務員の健康管理',
+      title: t('safety.covid.staff.title'),
       measures: [
-        '毎日の体温測定',
-        'マスク着用の徹底',
-        '手指消毒の実施',
-        '体調不良時の乗務禁止',
-        '定期的なPCR検査'
+        t('safety.covid.staff.temperature'),
+        t('safety.covid.staff.mask'),
+        t('safety.covid.staff.sanitizer'),
+        t('safety.covid.staff.absence'),
+        t('safety.covid.staff.testing')
       ]
     },
     {
-      title: 'お客様へのお願い',
+      title: t('safety.covid.customer.title'),
       measures: [
-        'マスク着用のお願い',
-        '手指消毒のご協力',
-        '体調不良時のご相談',
-        '座席指定のご協力',
-        '車内での会話を控えめに'
+        t('safety.covid.customer.mask'),
+        t('safety.covid.customer.sanitizer'),
+        t('safety.covid.customer.health'),
+        t('safety.covid.customer.seating'),
+        t('safety.covid.customer.conversation')
       ]
     }
   ];
@@ -106,7 +106,7 @@ const Safety: React.FC = () => {
             {t('nav.safety')}
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            お客様の安全・安心を最優先に、徹底した安全管理を実施しています。
+            {t('safety.description')}
           </p>
         </div>
 
@@ -114,10 +114,10 @@ const Safety: React.FC = () => {
         <div className="mb-20">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-daisou-text mb-4">
-              安全方針
+              {t('safety.policy.title')}
             </h2>
             <p className="text-lg text-gray-600">
-              私たちは以下の方針に基づき、安全輸送を実現します
+              {t('safety.policy.subtitle')}
             </p>
           </div>
 
@@ -144,10 +144,10 @@ const Safety: React.FC = () => {
         <div className="mb-20">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-daisou-text mb-4">
-              具体的な安全対策
+              {t('safety.measures.title')}
             </h2>
             <p className="text-lg text-gray-600">
-              車両・人・システムの三方面から安全を確保します
+              {t('safety.measures.subtitle')}
             </p>
           </div>
 
@@ -176,41 +176,39 @@ const Safety: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-daisou-text mb-6">
-                  運転者研修制度
+                  {t('safety.training.title')}
                 </h2>
                 <div className="space-y-4 text-gray-700">
                   <p>
-                    すべての運転者に対して、入社時研修から継続的な安全教育まで、
-                    体系的な研修プログラムを実施しています。
+                    {t('safety.training.description1')}
                   </p>
                   <p>
-                    安全運転技術の向上はもちろん、接客マナーや緊急時対応まで、
-                    お客様に安心してご利用いただくための総合的な教育を行っています。
+                    {t('safety.training.description2')}
                   </p>
                 </div>
                 <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="bg-white p-4 rounded-lg">
-                    <h4 className="font-semibold text-daisou-text">入社時研修</h4>
-                    <p className="text-sm text-gray-600">40時間の集中研修</p>
+                    <h4 className="font-semibold text-daisou-text">{t('safety.training.orientation.title')}</h4>
+                    <p className="text-sm text-gray-600">{t('safety.training.orientation.desc')}</p>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
-                    <h4 className="font-semibold text-daisou-text">定期研修</h4>
-                    <p className="text-sm text-gray-600">月1回の安全講習</p>
+                    <h4 className="font-semibold text-daisou-text">{t('safety.training.regular.title')}</h4>
+                    <p className="text-sm text-gray-600">{t('safety.training.regular.desc')}</p>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
-                    <h4 className="font-semibold text-daisou-text">適性診断</h4>
-                    <p className="text-sm text-gray-600">年1回の受診義務</p>
+                    <h4 className="font-semibold text-daisou-text">{t('safety.training.aptitude.title')}</h4>
+                    <p className="text-sm text-gray-600">{t('safety.training.aptitude.desc')}</p>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
-                    <h4 className="font-semibold text-daisou-text">健康管理</h4>
-                    <p className="text-sm text-gray-600">定期健康診断</p>
+                    <h4 className="font-semibold text-daisou-text">{t('safety.training.health.title')}</h4>
+                    <p className="text-sm text-gray-600">{t('safety.training.health.desc')}</p>
                   </div>
                 </div>
               </div>
               <div className="relative">
                 <img
                   src="/images/safety-training.jpg"
-                  alt="運転者研修"
+                  alt={t('safety.training.image.alt')}
                   className="rounded-2xl shadow-xl w-full h-80 object-cover"
                 />
               </div>
@@ -223,10 +221,10 @@ const Safety: React.FC = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-daisou-text mb-4 flex items-center justify-center">
               <Heart className="h-8 w-8 text-daisou-accent mr-3" />
-              感染症対策
+              {t('safety.covid.title')}
             </h2>
             <p className="text-lg text-gray-600">
-              新型コロナウイルス感染症対策を徹底し、安心してご利用いただけます
+              {t('safety.covid.subtitle')}
             </p>
           </div>
 
@@ -254,23 +252,23 @@ const Safety: React.FC = () => {
           <div className="text-center">
             <AlertTriangle className="h-12 w-12 text-red-600 mx-auto mb-4" />
             <h3 className="text-2xl font-bold text-red-700 mb-4">
-              緊急時の連絡先
+              {t('safety.emergency.title')}
             </h3>
             <p className="text-red-600 mb-6">
-              運行中に何らかの異常を感じられた場合は、immediately にご連絡ください。
+              {t('safety.emergency.description')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="tel:+81-80-6588-4932"
                 className="inline-flex items-center justify-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-full transition-colors duration-200"
               >
-                緊急連絡先: 080-6588-4932
+                {t('safety.emergency.contact')}
               </a>
               <a
                 href="tel:110"
                 className="inline-flex items-center justify-center px-6 py-3 border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white font-semibold rounded-full transition-colors duration-200"
               >
-                警察: 110番
+                {t('safety.emergency.police')}
               </a>
             </div>
           </div>
@@ -279,23 +277,23 @@ const Safety: React.FC = () => {
         {/* Safety Record */}
         <div className="mt-20 bg-white rounded-2xl shadow-lg p-8">
           <h3 className="text-2xl font-bold text-daisou-text mb-6 text-center">
-            安全実績
+            {t('safety.record.title')}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="bg-daisou-bg p-6 rounded-xl">
-              <div className="text-3xl font-bold text-daisou-accent mb-2">0件</div>
-              <div className="text-gray-600">重大事故件数</div>
-              <div className="text-sm text-gray-500">（2019年〜現在）</div>
+              <div className="text-3xl font-bold text-daisou-accent mb-2">{t('safety.record.accidents.number')}</div>
+              <div className="text-gray-600">{t('safety.record.accidents.label')}</div>
+              <div className="text-sm text-gray-500">{t('safety.record.accidents.period')}</div>
             </div>
             <div className="bg-daisou-bg p-6 rounded-xl">
-              <div className="text-3xl font-bold text-daisou-accent mb-2">100%</div>
-              <div className="text-gray-600">法定点検実施率</div>
-              <div className="text-sm text-gray-500">（毎年）</div>
+              <div className="text-3xl font-bold text-daisou-accent mb-2">{t('safety.record.inspection.number')}</div>
+              <div className="text-gray-600">{t('safety.record.inspection.label')}</div>
+              <div className="text-sm text-gray-500">{t('safety.record.inspection.period')}</div>
             </div>
             <div className="bg-daisou-bg p-6 rounded-xl">
-              <div className="text-3xl font-bold text-daisou-accent mb-2">月1回</div>
-              <div className="text-gray-600">安全講習実施</div>
-              <div className="text-sm text-gray-500">（全運転者対象）</div>
+              <div className="text-3xl font-bold text-daisou-accent mb-2">{t('safety.record.training.number')}</div>
+              <div className="text-gray-600">{t('safety.record.training.label')}</div>
+              <div className="text-sm text-gray-500">{t('safety.record.training.period')}</div>
             </div>
           </div>
         </div>
