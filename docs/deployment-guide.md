@@ -228,6 +228,11 @@ Get-Content dist\assets\index-*.js | Select-String "localhost"
 ### **第六步：上传构建文件**
 
 #### **6.1 上传主文件**
+上传所有内容
+```
+scp -P 8022 -r -i "$env:USERPROFILE\.ssh\id_rsa" dist/* r9048051@www1099.onamae.ne.jp:public_html/daisoubus.jp/
+```
+
 ```powershell
 # 上传主页文件
 scp -P 8022 -i "$env:USERPROFILE\.ssh\id_rsa" dist/index.html r9048051@www1099.onamae.ne.jp:public_html/daisoubus.jp/
