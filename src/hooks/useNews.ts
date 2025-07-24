@@ -27,7 +27,7 @@ export const useNews = (): NewsResponse & {
       
       setNews(newsData);
       setCategories([
-        { key: 'all', label: 'すべて', labelEn: 'All' },
+        { id: 0, key: 'all', label: language === 'ja' ? 'すべて' : 'All' },
         ...categoryData
       ]);
       setLastUpdated(new Date());
@@ -39,7 +39,7 @@ export const useNews = (): NewsResponse & {
       // API失败时不加载备用数据，保持空状态
       setNews([]);
       setCategories([
-        { key: 'all', label: 'すべて', labelEn: 'All' }
+        { id: 0, key: 'all', label: language === 'ja' ? 'すべて' : 'All' }
       ]);
     } finally {
       setLoading(false);

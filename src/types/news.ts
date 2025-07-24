@@ -42,8 +42,8 @@ export interface NewsItem {
   title: string;
   titleEn: string;
   date: string;
-  category: string;
-  categoryEn: string;
+  // ✅ 重构：使用分类ID而不是slug，实现数据归一化
+  categoryId: number;
   excerpt: string;
   excerptEn: string;
   content?: string; // 可选 - 列表页不包含，详情页包含
@@ -57,9 +57,9 @@ export interface NewsItem {
 
 // 分类类型
 export interface NewsCategory {
-  key: string;
-  label: string;
-  labelEn: string;
+  id: number;           // 分类ID，作为主键
+  key: string;          // slug，用于URL和过滤
+  label: string;        // 当前语言的显示名称
 }
 
 // API响应类型

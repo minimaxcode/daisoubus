@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Calendar, ArrowRight, Tag, AlertCircle, Loader2, RefreshCw, Wifi, WifiOff } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useNews } from '../hooks/useNews';
+import { CategoryColorManager } from '../lib/categoryColors';
 
 const News: React.FC = () => {
   const { t, language } = useLanguage();
@@ -16,26 +17,25 @@ const News: React.FC = () => {
   } = useNews();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
+  // ✅ 重构：使用分类ID进行过滤
   const filteredNews = selectedCategory === 'all' 
     ? newsItems 
-    : newsItems.filter(item => item.category === selectedCategory);
+    : newsItems.filter(item => {
+        const category = categories.find(cat => cat.id === item.categoryId);
+        return category?.key === selectedCategory;
+      });
 
   const featuredNews = newsItems.filter(item => item.featured);
 
-  const getCategoryColor = (category: string) => {
-    const colors = {
-      'announcement': 'bg-blue-100 text-blue-800',
-      'fleet': 'bg-green-100 text-green-800',
-      'campaign': 'bg-red-100 text-red-800',
-      'safety': 'bg-yellow-100 text-yellow-800',
-      'service': 'bg-purple-100 text-purple-800'
-    };
-    return colors[category] || 'bg-gray-100 text-gray-800';
+  // ✅ 重构：简化的分类显示逻辑，通过ID查找分类
+  const getCategoryLabel = (categoryId: number) => {
+    const category = categories.find(cat => cat.id === categoryId);
+    return category ? category.label : (language === 'ja' ? '未分類' : 'Uncategorized');
   };
 
-  const getCategoryLabel = (categorySlug: string) => {
-    const category = categories.find(cat => cat.key === categorySlug);
-    return category ? (language === 'ja' ? category.label : category.labelEn) : categorySlug;
+  // ✅ 重构：使用工具类动态生成分类颜色
+  const getCategoryColorById = (categoryId: number) => {
+    return CategoryColorManager.getColorById(categoryId);
   };
 
   // 加载状态
@@ -155,8 +155,8 @@ const News: React.FC = () => {
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute top-4 left-4">
-                      <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${getCategoryColor(item.category)}`}>
-                        {getCategoryLabel(item.category)}
+                      <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${getCategoryColorById(item.categoryId)}`}>
+                        {getCategoryLabel(item.categoryId)}
                       </span>
                     </div>
                   </div>
@@ -198,7 +198,7 @@ const News: React.FC = () => {
                     : 'bg-white text-daisou-text hover:bg-daisou-accent hover:text-white border border-gray-200'
                 }`}
               >
-                {language === 'ja' ? category.label : category.labelEn}
+                {category.label}
               </button>
             ))}
           </div>
@@ -215,9 +215,9 @@ const News: React.FC = () => {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute top-3 left-3">
-                  <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getCategoryColor(item.category)}`}>
+                  <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getCategoryColorById(item.categoryId)}`}>
                     <Tag className="h-3 w-3 inline mr-1" />
-                    {getCategoryLabel(item.category)}
+                    {getCategoryLabel(item.categoryId)}
                   </span>
                 </div>
               </div>

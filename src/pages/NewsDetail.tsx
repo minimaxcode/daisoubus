@@ -4,6 +4,7 @@ import { Calendar, ArrowLeft, Tag, Share2, Clock, User } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { newsService } from '../services/newsService';
 import { NewsItem, NewsCategory } from '../types/news';
+import { CategoryColorManager } from '../lib/categoryColors';
 
 const NewsDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -36,20 +37,15 @@ const NewsDetail: React.FC = () => {
     fetchNewsDetail();
   }, [id, language]); // 🆕 当语言改变时重新获取数据
 
-  const getCategoryColor = (category: string) => {
-    const colors = {
-      'announcement': 'bg-blue-100 text-blue-800',
-      'fleet': 'bg-green-100 text-green-800', 
-      'campaign': 'bg-red-100 text-red-800',
-      'safety': 'bg-yellow-100 text-yellow-800',
-      'service': 'bg-purple-100 text-purple-800'
-    };
-    return colors[category] || 'bg-gray-100 text-gray-800';
+  // ✅ 重构：使用工具类动态生成分类颜色
+  const getCategoryColorById = (categoryId: number) => {
+    return CategoryColorManager.getColorById(categoryId);
   };
 
-  const getCategoryLabel = (categorySlug: string) => {
-    const category = categories.find(cat => cat.key === categorySlug);
-    return category ? (language === 'ja' ? category.label : category.labelEn) : categorySlug;
+  // ✅ 重构：通过ID查找分类标签
+  const getCategoryLabel = (categoryId: number) => {
+    const category = categories.find(cat => cat.id === categoryId);
+    return category ? category.label : (language === 'ja' ? '未分類' : 'Uncategorized');
   };
 
   const formatDate = (dateString: string) => {
@@ -164,9 +160,9 @@ const NewsDetail: React.FC = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             <div className="absolute bottom-6 left-6">
-              <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${getCategoryColor(news.category)}`}>
+              <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${getCategoryColorById(news.categoryId)}`}>
                 <Tag className="h-4 w-4 inline mr-1" />
-                {getCategoryLabel(news.category)}
+                {getCategoryLabel(news.categoryId)}
               </span>
             </div>
           </div>
