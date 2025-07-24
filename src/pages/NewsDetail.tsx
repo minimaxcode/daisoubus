@@ -5,6 +5,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { newsService } from '../services/newsService';
 import { NewsItem, NewsCategory } from '../types/news';
 import { CategoryColorManager } from '../lib/categoryColors';
+import SmartContentRenderer from '../components/SmartContentRenderer';
 
 const NewsDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -204,12 +205,12 @@ const NewsDetail: React.FC = () => {
         </article>
 
         {/* Article Content */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
-          <div 
-            className="wp-content prose prose-lg max-w-none prose-headings:text-daisou-text prose-links:text-daisou-accent prose-links:no-underline hover:prose-links:underline prose-strong:text-daisou-text prose-img:rounded-xl prose-img:shadow-lg whitespace-pre-line"
-            style={{ lineHeight: '1.8' }}
-            dangerouslySetInnerHTML={{ 
-              __html: news.content || news.excerpt 
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
+                    <SmartContentRenderer
+            content={news.content || news.excerpt}
+            className="prose-headings:text-daisou-text prose-links:text-daisou-accent prose-links:no-underline hover:prose-links:underline prose-strong:text-daisou-text prose-img:rounded-xl prose-img:shadow-lg"
+            onAnalysisComplete={(analysis) => {
+              // 内容分析完成，静默处理
             }}
           />
         </div>

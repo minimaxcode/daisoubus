@@ -228,6 +228,14 @@ export class NewsService {
   private processContentHtml(html: string): string {
     if (!html) return '';
     
+    // 检查是否为完整HTML文档
+    const isFullHTML = /<!DOCTYPE|<html[\s>]/i.test(html);
+    
+    if (isFullHTML) {
+      // 对于完整HTML文档，保持原样，让SmartContentRenderer处理
+      return html.trim();
+    }
+    
     // 1. 规范化换行符：将各种换行形式统一处理
     let processed = html
       // 将连续的\n转换为<br>
@@ -238,9 +246,10 @@ export class NewsService {
       .replace(/<\/p>\s*<p>/g, '</p><br><p>')
       // 确保div标签后有换行
       .replace(/<\/div>\s*<div>/g, '</div><br><div>')
-      // 移除可能有害的标签但保留格式标签
+      // 移除可能有害的标签但保留格式标签（仅针对片段内容）
       .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
-      .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '');
+      .replace(/<link\b[^>]*>/gi, '') // 移除外部链接
+      .replace(/<meta\b[^>]*>/gi, ''); // 移除meta标签
     
     // 2. 如果内容没有任何HTML标签，将纯文本的换行转换为<br>
     if (!/<[^>]+>/.test(processed)) {
