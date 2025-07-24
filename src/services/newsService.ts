@@ -179,8 +179,8 @@ export class NewsService {
       categoryId: categoryId,  // ✅ 使用分类ID
       excerpt: this.stripHtml(wp.excerpt.rendered),
       excerptEn: wp.acf?.excerpt_en || this.stripHtml(wp.excerpt.rendered),
-      content: wp.content?.rendered || '',
-      contentEn: wp.acf?.content_en || wp.content?.rendered || '',
+      content: this.processContentHtml(wp.content?.rendered || ''),
+      contentEn: this.processContentHtml(wp.acf?.content_en || wp.content?.rendered || ''),
       image: this.getImageFromPost(wp),
       featured: wp.acf?.featured || false,
       // 添加语言和翻译信息
@@ -222,6 +222,32 @@ export class NewsService {
     const div = document.createElement('div');
     div.innerHTML = html;
     return div.textContent || div.innerText || '';
+  }
+
+  // ✅ 处理内容HTML，确保换行符正确显示
+  private processContentHtml(html: string): string {
+    if (!html) return '';
+    
+    // 1. 规范化换行符：将各种换行形式统一处理
+    let processed = html
+      // 将连续的\n转换为<br>
+      .replace(/\n+/g, '<br>')
+      // 将连续的空格保持（但限制最多3个）
+      .replace(/\s{2,}/g, (match) => match.length > 3 ? '&nbsp;&nbsp;&nbsp;' : match.replace(/ /g, '&nbsp;'))
+      // 确保段落标签后有换行
+      .replace(/<\/p>\s*<p>/g, '</p><br><p>')
+      // 确保div标签后有换行
+      .replace(/<\/div>\s*<div>/g, '</div><br><div>')
+      // 移除可能有害的标签但保留格式标签
+      .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+      .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '');
+    
+    // 2. 如果内容没有任何HTML标签，将纯文本的换行转换为<br>
+    if (!/<[^>]+>/.test(processed)) {
+      processed = processed.replace(/\n/g, '<br>');
+    }
+    
+    return processed.trim();
   }
   
 

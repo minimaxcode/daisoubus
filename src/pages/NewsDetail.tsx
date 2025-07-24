@@ -206,7 +206,8 @@ const NewsDetail: React.FC = () => {
         {/* Article Content */}
         <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
           <div 
-            className="prose prose-lg max-w-none prose-headings:text-daisou-text prose-links:text-daisou-accent prose-links:no-underline hover:prose-links:underline prose-strong:text-daisou-text prose-img:rounded-xl prose-img:shadow-lg"
+            className="wp-content prose prose-lg max-w-none prose-headings:text-daisou-text prose-links:text-daisou-accent prose-links:no-underline hover:prose-links:underline prose-strong:text-daisou-text prose-img:rounded-xl prose-img:shadow-lg whitespace-pre-line"
+            style={{ lineHeight: '1.8' }}
             dangerouslySetInnerHTML={{ 
               __html: news.content || news.excerpt 
             }}
