@@ -60,6 +60,8 @@ export interface NewsCategory {
   id: number;           // 分类ID，作为主键
   key: string;          // slug，用于URL和过滤
   label: string;        // 当前语言的显示名称
+  // ✅ 新增：翻译关系映射，用于跨语言状态同步
+  translations?: Record<string, number>; // {ja: 1, en: 8}
 }
 
 // API响应类型

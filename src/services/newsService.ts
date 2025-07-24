@@ -131,17 +131,21 @@ export class NewsService {
       id: category.id,          // 使用分类ID作为主键
       key: category.slug,       // slug用于URL和过滤
       label: category.name,     // 当前语言的显示名称
+      // ✅ 保存翻译关系，用于跨语言状态同步
+      translations: category.polylang_translations || {}
     }));
     
     return mapped.sort((a, b) => {
-      // 未分類放最后
+      // ✅ 新排序逻辑：未分類放最后，其他按ID升序排序
       const isUncategorizedA = this.isUncategorizedCategory(a);
       const isUncategorizedB = this.isUncategorizedCategory(b);
       
+      // 未分類分类排在最后
       if (isUncategorizedA && !isUncategorizedB) return 1;
       if (!isUncategorizedA && isUncategorizedB) return -1;
       
-      return a.label.localeCompare(b.label);
+      // 其他分类按ID升序排序
+      return a.id - b.id;
     });
   }
   

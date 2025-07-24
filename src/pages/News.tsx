@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, ArrowRight, Tag, AlertCircle, Loader2, RefreshCw, Wifi, WifiOff } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -15,15 +15,53 @@ const News: React.FC = () => {
     lastUpdated, 
     retry 
   } = useNews();
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  // ✅ 修复：使用分类ID进行状态管理，支持动态翻译映射
+  const [selectedCategoryId, setSelectedCategoryId] = useState<number>(0);
+
+  // ✅ 语言切换时的分类映射：使用polylang_translations实现动态映射
+  useEffect(() => {
+    if (selectedCategoryId === 0 || categories.length === 0) {
+      return; // "全部"分类或分类未加载时无需映射
+    }
+
+    // 检查当前选中的分类ID是否在新语言的分类列表中
+    const currentCategoryExists = categories.find(cat => cat.id === selectedCategoryId);
+    
+    if (!currentCategoryExists) {
+      // 当前分类在新语言中不存在，尝试通过翻译关系找到对应分类
+      const mappedCategoryId = findTranslatedCategoryId(selectedCategoryId, language);
+      
+      if (mappedCategoryId && mappedCategoryId !== selectedCategoryId) {
+        setSelectedCategoryId(mappedCategoryId);
+      } else {
+        // 找不到对应翻译，回到"全部"分类
+        setSelectedCategoryId(0);
+      }
+    }
+  }, [language, categories, selectedCategoryId]);
+
+  // ✅ 通过翻译关系查找对应语言的分类ID
+  const findTranslatedCategoryId = (categoryId: number, targetLanguage: string): number | null => {
+    // 在所有分类中查找包含目标分类ID的翻译关系
+    for (const category of categories) {
+      if (category.translations) {
+        // 检查当前分类的翻译关系中是否包含目标分类ID
+        const translationEntries = Object.entries(category.translations);
+        const hasTargetId = translationEntries.some(([lang, id]) => id === categoryId);
+        
+        if (hasTargetId) {
+          // 找到了包含目标ID的翻译关系，返回当前语言的对应ID
+          return category.translations[targetLanguage] || null;
+        }
+      }
+    }
+    return null;
+  };
 
   // ✅ 重构：使用分类ID进行过滤
-  const filteredNews = selectedCategory === 'all' 
+  const filteredNews = selectedCategoryId === 0 
     ? newsItems 
-    : newsItems.filter(item => {
-        const category = categories.find(cat => cat.id === item.categoryId);
-        return category?.key === selectedCategory;
-      });
+    : newsItems.filter(item => item.categoryId === selectedCategoryId);
 
   const featuredNews = newsItems.filter(item => item.featured);
 
@@ -191,9 +229,9 @@ const News: React.FC = () => {
             {categories.map((category) => (
               <button
                 key={category.key}
-                onClick={() => setSelectedCategory(category.key)}
+                onClick={() => setSelectedCategoryId(category.id)}
                 className={`px-6 py-2 rounded-full font-medium transition-colors duration-200 ${
-                  selectedCategory === category.key
+                  selectedCategoryId === category.id
                     ? 'bg-daisou-accent text-white'
                     : 'bg-white text-daisou-text hover:bg-daisou-accent hover:text-white border border-gray-200'
                 }`}
