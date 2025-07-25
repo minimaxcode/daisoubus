@@ -231,6 +231,10 @@ Get-Content dist\assets\index-*.js | Select-String "localhost"
 上传所有内容
 ```
 scp -P 8022 -r -i "$env:USERPROFILE\.ssh\id_rsa" dist/* r9048051@www1099.onamae.ne.jp:public_html/daisoubus.jp/
+
+#创建api目录上传
+sh -p 8022 -i "$env:USERPROFILE\.ssh\id_rsa" r9048051@www1099.onamae.ne.jp "mkdir -p public_html/daisoubus.jp/api"
+scp -P 8022 -i "$env:USERPROFILE\.ssh\id_rsa" api/send_email.php r9048051@www1099.onamae.ne.jp:public_html/daisoubus.jp/api/
 ```
 
 ```powershell
