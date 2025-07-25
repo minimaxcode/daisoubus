@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Shield, Users, MapPin, Clock } from 'lucide-react';
+import { ArrowRight, Plane, Globe, Users, Heart, CalendarDays, FileText, Bus, MapPin, Languages, Monitor } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Home: React.FC = () => {
@@ -14,10 +14,8 @@ const Home: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
-                <h1 className="text-4xl lg:text-6xl font-bold text-daisou-text leading-tight">
+                <h1 className="text-4xl lg:text-5xl font-bold text-daisou-accent leading-tight">
                   {t('hero.title')}
-                  <br />
-                  <span className="text-daisou-accent">{t('hero.subtitle')}</span>
                 </h1>
                 <p className="text-lg text-gray-600 leading-relaxed max-w-lg">
                   {t('hero.description')}
@@ -25,11 +23,8 @@ const Home: React.FC = () => {
               </div>
               
               <div className="space-y-4">
-                <p className="text-2xl font-semibold text-daisou-text">
+                <p className="text-lg text-gray-600 leading-relaxed max-w-lg">
                   {t('company.slogan1')}
-                </p>
-                <p className="text-xl text-daisou-accent font-medium">
-                  {t('company.slogan2')}
                 </p>
               </div>
 
@@ -74,7 +69,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Business Services Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -86,31 +81,105 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                icon: <Users className="h-8 w-8" />,
-                title: t('services.charter'),
-                description: t('services.charter.description'),
+                icon: <Bus className="h-6 w-6" />,
+                title: t('company.services.charter'),
+                description: t('company.services.charter.desc'),
                 image: '/images/mid-size-bus.webp'
               },
               {
-                icon: <MapPin className="h-8 w-8" />,
-                title: t('services.guide'),
-                description: t('services.guide.description'),
-                image: '/images/cherry-blossom.jpg'
+                icon: <MapPin className="h-6 w-6" />,
+                title: t('company.services.guide'),
+                description: t('company.services.guide.desc'),
+                image: '/images/japan-scenery.jpg'
               },
               {
-                icon: <Shield className="h-8 w-8" />,
-                title: t('services.rental'),
-                description: t('services.rental.description'),
+                icon: <Languages className="h-6 w-6" />,
+                title: t('company.services.rental'),
+                description: t('company.services.rental.desc'),
+                image: '/images/contact-support.jpg'
+              },
+              {
+                icon: <Monitor className="h-6 w-6" />,
+                title: t('company.services.gym'),
+                description: t('company.services.gym.desc'),
+                image: '/images/team-photo.jpg'
+              }
+            ].map((service, index) => (
+              <div key={index} className="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+                <div className="h-36 overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-4">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <div className="p-1.5 bg-daisou-accent text-white rounded-lg">
+                      {service.icon}
+                    </div>
+                    <h3 className="text-lg font-semibold text-daisou-text">{service.title}</h3>
+                  </div>
+                  <p className="text-gray-600 text-sm">{service.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Usage Scenarios Section */}
+      <section className="py-20 bg-daisou-bg">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-daisou-text mb-4">
+              {t('usage.title')}
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              {t('company.slogan3')}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <Plane className="h-8 w-8" />,
+                title: t('services.airport'),
+                description: t('services.airport.description'),
                 image: '/images/narita-airport.jpg'
               },
               {
-                icon: <Clock className="h-8 w-8" />,
-                title: t('services.gym'),
-                description: t('services.gym.description'),
+                icon: <Globe className="h-8 w-8" />,
+                title: t('services.inbound'),
+                description: t('services.inbound.description'),
+                image: '/images/cherry-blossom.jpg'
+              },
+              {
+                icon: <Users className="h-8 w-8" />,
+                title: t('services.daytrip'),
+                description: t('services.daytrip.description'),
+                image: '/images/japan-scenery.jpg'
+              },
+              {
+                icon: <Heart className="h-8 w-8" />,
+                title: t('services.ceremony'),
+                description: t('services.ceremony.description'),
+                image: '/images/family-travel.jpg'
+              },
+              {
+                icon: <CalendarDays className="h-8 w-8" />,
+                title: t('services.event'),
+                description: t('services.event.description'),
                 image: '/images/team-photo.jpg'
+              },
+              {
+                icon: <FileText className="h-8 w-8" />,
+                title: t('services.contract'),
+                description: t('services.contract.description'),
+                image: '/images/mid-size-bus.webp'
               }
             ].map((service, index) => (
               <div key={index} className="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
@@ -137,7 +206,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Fleet Preview Section */}
-      <section className="py-20 bg-daisou-bg">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-daisou-text mb-4">
@@ -148,25 +217,43 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
+                name: t('fleet.large'),
+                seats: t('fleet.large.seats'),
+                description: t('fleet.large.description'),
+                image: '/images/mid-size-bus.webp'
+              },
+              {
                 name: t('fleet.midsize'),
-                seats: t('home.fleet.seats.27'),
+                seats: t('fleet.midsize.seats'),
                 description: t('fleet.midsize.description'),
                 image: '/images/mid-size-bus.webp'
               },
               {
-                name: t('home.fleet.name.coaster'),
-                seats: t('home.fleet.seats.coaster'),
+                name: t('fleet.rosa'),
+                seats: t('fleet.rosa.seats'),
+                description: t('fleet.rosa.description'),
+                image: '/images/microbus-rosa.jpg'
+              },
+              {
+                name: t('fleet.coaster'),
+                seats: t('fleet.coaster.seats'),
                 description: t('fleet.coaster.description'),
                 image: '/images/microbus-coaster.jpg'
               },
               {
-                name: t('home.fleet.name.rosa'),
-                seats: t('home.fleet.seats.rosa'),
-                description: t('fleet.rosa.description'),
+                name: t('fleet.vip'),
+                seats: t('fleet.vip.seats'),
+                description: t('fleet.vip.description'),
                 image: '/images/microbus-rosa.jpg'
+              },
+              {
+                name: t('fleet.commuter'),
+                seats: t('fleet.commuter.seats'),
+                description: t('fleet.commuter.description'),
+                image: '/images/microbus-coaster.jpg'
               }
             ].map((vehicle, index) => (
               <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">

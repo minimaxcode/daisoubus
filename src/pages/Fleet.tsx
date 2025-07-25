@@ -7,6 +7,25 @@ const Fleet: React.FC = () => {
 
   const vehicles = [
     {
+      name: t('fleet.large'),
+      nameEn: t('fleet.large.name.en'),
+      seats: t('fleet.large.seats'),
+      description: t('fleet.large.description'),
+      image: '/images/mid-size-bus.webp',
+      features: [
+        t('fleet.large.feature1'),
+        t('fleet.large.feature2'),
+        t('fleet.large.feature3'),
+        t('fleet.large.feature4')
+      ],
+      specs: {
+        length: t('fleet.large.length'),
+        width: t('fleet.large.width'),
+        height: t('fleet.large.height'),
+        capacity: t('fleet.large.capacity')
+      }
+    },
+    {
       name: t('fleet.midsize'),
       nameEn: t('fleet.midsize.name.en'),
       seats: t('fleet.midsize.seats'),
@@ -26,7 +45,26 @@ const Fleet: React.FC = () => {
       }
     },
     {
-      name: t('fleet.coaster.name'),
+      name: t('fleet.rosa'),
+      nameEn: t('fleet.rosa.name.en'),
+      seats: t('fleet.rosa.seats'),
+      description: t('fleet.rosa.description'),
+      image: '/images/microbus-rosa.jpg',
+      features: [
+        t('fleet.rosa.feature1'),
+        t('fleet.rosa.feature2'),
+        t('fleet.rosa.feature3'),
+        t('fleet.rosa.feature4')
+      ],
+      specs: {
+        length: t('fleet.rosa.length'),
+        width: t('fleet.rosa.width'),
+        height: t('fleet.rosa.height'),
+        capacity: t('fleet.rosa.capacity')
+      }
+    },
+    {
+      name: t('fleet.coaster'),
       nameEn: t('fleet.coaster.name.en'),
       seats: t('fleet.coaster.seats'),
       description: t('fleet.coaster.description'),
@@ -45,22 +83,41 @@ const Fleet: React.FC = () => {
       }
     },
     {
-      name: t('fleet.rosa.name'),
-      nameEn: t('fleet.rosa.name.en'),
-      seats: t('fleet.rosa.seats'),
-      description: t('fleet.rosa.description'),
+      name: t('fleet.vip'),
+      nameEn: t('fleet.vip.name.en'),
+      seats: t('fleet.vip.seats'),
+      description: t('fleet.vip.description'),
       image: '/images/microbus-rosa.jpg',
       features: [
-        t('fleet.rosa.feature1'),
-        t('fleet.rosa.feature2'),
-        t('fleet.rosa.feature3'),
-        t('fleet.rosa.feature4')
+        t('fleet.vip.feature1'),
+        t('fleet.vip.feature2'),
+        t('fleet.vip.feature3'),
+        t('fleet.vip.feature4')
       ],
       specs: {
-        length: t('fleet.rosa.length'),
-        width: t('fleet.rosa.width'),
-        height: t('fleet.rosa.height'),
-        capacity: t('fleet.rosa.capacity')
+        length: t('fleet.vip.length'),
+        width: t('fleet.vip.width'),
+        height: t('fleet.vip.height'),
+        capacity: t('fleet.vip.capacity')
+      }
+    },
+    {
+      name: t('fleet.commuter'),
+      nameEn: t('fleet.commuter.name.en'),
+      seats: t('fleet.commuter.seats'),
+      description: t('fleet.commuter.description'),
+      image: '/images/microbus-coaster.jpg',
+      features: [
+        t('fleet.commuter.feature1'),
+        t('fleet.commuter.feature2'),
+        t('fleet.commuter.feature3'),
+        t('fleet.commuter.feature4')
+      ],
+      specs: {
+        length: t('fleet.commuter.length'),
+        width: t('fleet.commuter.width'),
+        height: t('fleet.commuter.height'),
+        capacity: t('fleet.commuter.capacity')
       }
     }
   ];

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, MapPin, Users, Award, Building } from 'lucide-react';
+import { Calendar, MapPin, Users, Building } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Company: React.FC = () => {
@@ -33,23 +33,7 @@ const Company: React.FC = () => {
     }
   ];
 
-  const licenses = [
-    {
-      type: t('company.licenses.charter.type'),
-      number: t('company.licenses.charter.number'),
-      authority: t('company.licenses.charter.authority')
-    },
-    {
-      type: t('company.licenses.rental.type'),
-      number: t('company.licenses.rental.number'),
-      authority: t('company.licenses.rental.authority')
-    },
-    {
-      type: t('company.licenses.travel.type'),
-      number: t('company.licenses.travel.number'),
-      authority: t('company.licenses.travel.authority')
-    }
-  ];
+
 
   // API Key provided by the user
   const apiKey = 'AIzaSyBjMv12htuJd3rK6rjQL1mMVgUpT-DVfMg';
@@ -164,31 +148,6 @@ const Company: React.FC = () => {
                 <div key={index} className="border-l-4 border-daisou-accent pl-4">
                   <h4 className="font-semibold text-daisou-text">{item.service}</h4>
                   <p className="text-gray-600 text-sm">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Licenses */}
-        <div className="mb-20">
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h3 className="text-2xl font-bold text-daisou-text mb-6 flex items-center">
-              <Award className="h-6 w-6 text-daisou-accent mr-2" />
-              {t('company.licenses.title')}
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {licenses.map((license, index) => (
-                <div key={index} className="bg-daisou-bg p-6 rounded-xl">
-                  <h4 className="font-semibold text-daisou-text mb-2">
-                    {license.type}
-                  </h4>
-                  <p className="text-lg font-bold text-daisou-accent mb-1">
-                    {license.number}
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    {license.authority}
-                  </p>
                 </div>
               ))}
             </div>

@@ -206,13 +206,52 @@ const NewsDetail: React.FC = () => {
 
         {/* Article Content */}
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
-                    <SmartContentRenderer
-            content={news.content || news.excerpt}
-            className="prose-headings:text-daisou-text prose-links:text-daisou-accent prose-links:no-underline hover:prose-links:underline prose-strong:text-daisou-text prose-img:rounded-xl prose-img:shadow-lg"
-            onAnalysisComplete={(analysis) => {
-              // 内容分析完成，静默处理
-            }}
-          />
+          <div className="relative">
+            <div className="news-content-wrapper">
+              <SmartContentRenderer
+                content={news.content || news.excerpt}
+                className="prose-headings:text-daisou-text prose-links:text-daisou-accent prose-links:no-underline hover:prose-links:underline prose-strong:text-daisou-text prose-img:rounded-xl prose-img:shadow-lg"
+                onAnalysisComplete={(analysis) => {
+                  // 内容分析完成，静默处理
+                }}
+              />
+              
+              <style dangerouslySetInnerHTML={{
+                __html: `
+                  .news-content-wrapper .mixed-content-container {
+                    box-shadow: none !important;
+                    background: transparent !important;
+                    border: none !important;
+                  }
+                  
+                  .news-content-wrapper .content-wrapper {
+                    border: none !important;
+                    box-shadow: none !important;
+                  }
+                  
+                  .news-content-wrapper .content-wrapper::after,
+                  .news-content-wrapper .content-wrapper::before {
+                    display: none !important;
+                  }
+                  
+                  .news-content-wrapper .prose hr {
+                    display: none !important;
+                  }
+                `
+              }} />
+            </div>
+            
+            {/* Integrated Pricing CTA */}
+            <div className="flex justify-end pt-6 pb-6 pr-6">
+              <Link 
+                to="/pricing" 
+                className="inline-flex items-center px-4 py-2 bg-daisou-accent hover:bg-pink-400 text-white font-medium rounded-full transition-colors duration-200 text-sm shadow-lg"
+              >
+                {t('news.footer.pricing.title')}
+                <ArrowLeft className="ml-1 h-4 w-4 rotate-180" />
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Article Footer - Back to News */}
