@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // 增加了 Loader2, CheckCircle, XCircle 用于状态显示
 import { Phone, Mail, MapPin, Clock, Send, Loader2, CheckCircle, XCircle } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -20,6 +20,16 @@ const Contact: React.FC = () => {
   // 新增状态管理，用于处理提交过程的用户反馈
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null);
+
+  // 检查URL参数并自动设置表单类型
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const typeParam = urlParams.get('type');
+    
+    if (typeParam && ['general', 'group', 'corporate'].includes(typeParam)) {
+      setFormType(typeParam as 'general' | 'group' | 'corporate');
+    }
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -147,7 +157,7 @@ const Contact: React.FC = () => {
                 <div className="space-y-2">
                   <p className="text-gray-600">LINE: fanta0505</p>
                   <p className="text-gray-600">WeChat: pandababy20</p>
-                  <p className="text-gray-600">Facebook: /profile.php?id=100070317061493</p>
+                  <p className="text-gray-600">Facebook: 大爽観光バス</p>
                 </div>
               </div>
             </div>

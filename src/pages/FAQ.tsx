@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { ChevronDown, ChevronUp, Search, Phone, Mail } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -7,6 +7,7 @@ const FAQ: React.FC = () => {
   const [openItems, setOpenItems] = useState<number[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const faqRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
 
   const faqCategories = [
     { key: 'all', label: t('faq.category.all') },
@@ -101,6 +102,38 @@ const FAQ: React.FC = () => {
     );
   };
 
+  const jumpToFAQ = (id: number) => {
+    // 确保问题被展开
+    setOpenItems(prev => 
+      prev.includes(id) ? prev : [...prev, id]
+    );
+    
+    // 可能需要重置搜索和分类过滤以确保目标FAQ可见
+    setSearchTerm('');
+    setSelectedCategory('all');
+    
+    // 等待状态更新和DOM重新渲染后再滚动
+    setTimeout(() => {
+      const targetElement = faqRefs.current[id];
+      if (targetElement) {
+        targetElement.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        });
+        
+        // 添加视觉高亮效果
+        targetElement.style.border = '2px solid #ec4899';
+        targetElement.style.boxShadow = '0 0 20px rgba(236, 72, 153, 0.3)';
+        
+        // 3秒后移除高亮效果
+        setTimeout(() => {
+          targetElement.style.border = '';
+          targetElement.style.boxShadow = '';
+        }, 3000);
+      }
+    }, 100);
+  };
+
   const filteredFAQs = faqItems.filter(item => {
     const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
     const matchesSearch = searchTerm === '' || 
@@ -159,7 +192,10 @@ const FAQ: React.FC = () => {
         {/* FAQ Items */}
         <div className="space-y-4 mb-16">
           {filteredFAQs.map((item) => (
-            <div key={item.id} className="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div 
+              key={item.id} 
+              ref={(el) => (faqRefs.current[item.id] = el)}
+              className="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300">
               <button
                 onClick={() => toggleItem(item.id)}
                 className="w-full px-6 py-4 text-left focus:outline-none focus:ring-2 focus:ring-daisou-accent focus:ring-inset"
@@ -285,8 +321,8 @@ const FAQ: React.FC = () => {
                   {item.answer}
                 </p>
                 <button
-                  onClick={() => toggleItem(item.id)}
-                  className="text-daisou-accent hover:text-pink-400 text-sm font-medium mt-3"
+                  onClick={() => jumpToFAQ(item.id)}
+                  className="text-daisou-accent hover:text-pink-400 text-sm font-medium mt-3 transition-colors duration-200"
                 >
                   {t('faq.view.details')}
                 </button>

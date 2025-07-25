@@ -288,26 +288,6 @@ const News: React.FC = () => {
             <p className="text-gray-500 text-lg">{t('news.no.results')}</p>
           </div>
         )}
-
-        {/* Newsletter Signup */}
-        <div className="mt-20 bg-daisou-bg rounded-3xl p-12 text-center">
-          <h3 className="text-2xl font-bold text-daisou-text mb-4">
-            {t('news.newsletter.title')}
-          </h3>
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-            {t('news.newsletter.description')}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder={t('news.newsletter.placeholder')}
-              className="flex-1 px-4 py-3 border border-gray-300 rounded-full focus:ring-2 focus:ring-daisou-accent focus:border-transparent"
-            />
-                          <button className="px-8 py-3 bg-daisou-accent hover:bg-pink-400 text-white font-semibold rounded-full transition-colors duration-200">
-              {t('news.newsletter.subscribe')}
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );

@@ -41,6 +41,7 @@ const translations = {
     // Company info
     'company.name': '大爽観光バス',
     'company.slogan1': '快適な旅と笑顔いっぱいの対応を常に心がけてまいります。',
+    'company.slogan2': 'すべては、笑顔のために。',
     'company.slogan3': '「安心・丁寧・誠実」を心を込めてお届けします。',
     
     // Hero section
@@ -520,6 +521,7 @@ const translations = {
     // Company info
     'company.name': 'DAISOU Travel Bus',
     'company.slogan1': 'Comfortable journeys delivered with genuine smiles.',
+    'company.slogan2': 'All for Smiles.',
     'company.slogan3': 'Safety, Care and Integrity—every mile, every time.',
     
     // Hero section

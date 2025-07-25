@@ -408,18 +408,12 @@ const Careers: React.FC = () => {
                 ? '未来の同僚となるあなたからのご連絡を、心よりお待ちしております。' 
                 : 'We sincerely look forward to hearing from you, our future colleague.'}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/contact#form" // Assuming your contact form has an id="form"
-                className="inline-flex items-center justify-center px-8 py-3 bg-daisou-accent hover:bg-pink-400 text-white font-semibold rounded-full transition-colors duration-200"
-              >
-                {content.applyButton}
-              </a>
+            <div className="flex justify-center">
               <a
                 href="/contact"
-                className="inline-flex items-center justify-center px-8 py-3 border-2 border-daisou-accent text-daisou-accent hover:bg-daisou-accent hover:text-white font-semibold rounded-full transition-colors duration-200"
+                className="inline-flex items-center justify-center px-12 py-4 bg-daisou-accent hover:bg-pink-400 text-white font-semibold rounded-full transition-colors duration-200 text-lg shadow-lg hover:shadow-xl"
               >
-                {content.quoteButton}
+                {language === 'ja' ? 'お問い合わせ・応募' : 'Contact & Apply'}
               </a>
             </div>
           </div>

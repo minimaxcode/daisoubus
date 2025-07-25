@@ -31,7 +31,9 @@ const FloatingContactButton: React.FC = () => {
               <span className="text-sm font-medium text-daisou-text">{t('contact.title')}</span>
             </Link>
             <a
-              href="#"
+              href="https://line.me/ti/p/fanta0505"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center space-x-2 p-3 rounded-lg hover:bg-daisou-bg transition-colors duration-200"
             >
               <MessageCircle className="h-5 w-5 text-daisou-accent" />

@@ -241,10 +241,10 @@ const NewsDetail: React.FC = () => {
               }} />
             </div>
             
-            {/* Integrated Pricing CTA */}
+            {/* Integrated Quote CTA */}
             <div className="flex justify-end pt-6 pb-6 pr-6">
               <Link 
-                to="/pricing" 
+                to="/quote" 
                 className="inline-flex items-center px-4 py-2 bg-daisou-accent hover:bg-pink-400 text-white font-medium rounded-full transition-colors duration-200 text-sm shadow-lg"
               >
                 {t('news.footer.pricing.title')}
