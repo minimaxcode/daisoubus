@@ -182,18 +182,46 @@ export class SmartContentDetector {
   }
 
   /**
-   * 检测混合内容 - 优化性能
+   * 检测混合内容 - 专门优化WordPress内容处理
    */
   private static isMixedContent(content: string): boolean {
     const htmlMatches = content.match(this.HTML_PATTERNS.HTML_TAG);
     if (!htmlMatches || htmlMatches.length === 0) return false;
 
+    // 检查WordPress风格的HTML内容
+    // 1. 包含<br>前缀的p标签结构
+    const hasWordPressBreaks = /<br\s*\/?>\s*<p[^>]*>/i.test(content);
+    
+    // 2. 标准WordPress内容模式：多个p标签、figure标签等
+    const isWordPressContent = (
+      /<p[^>]*>[\s\S]*?<\/p>/i.test(content) ||
+      /<figure[^>]*>[\s\S]*?<\/figure>/i.test(content) ||
+      hasWordPressBreaks
+    );
+    
+    // WordPress内容不应该被视为混合内容
+    if (isWordPressContent) {
+      return false;
+    }
+
+    // 检查是否只包含基本HTML结构元素
+    const hasOnlyBasicElements = !/<(article|section|header|footer|main|aside|nav)[^>]*>/i.test(content);
+    
+    // 如果只包含基本元素（p, div, h1-h6, figure, strong, em等），不是混合内容
+    if (hasOnlyBasicElements) {
+      return false;
+    }
+
     // 计算HTML标签覆盖的字符数
     const htmlLength = htmlMatches.reduce((sum, match) => sum + match.length, 0);
     const textLength = content.length - htmlLength;
     
-    // 如果文本内容占比超过30%，认为是混合内容
-    return textLength / content.length > 0.3;
+    // 检查是否存在明显的文本和HTML块混合模式（非常严格的标准）
+    const complexBlockPattern = /<(article|section|main|aside|nav)[^>]*>[\s\S]*?<\/\1>/gi;
+    const hasComplexBlocks = (content.match(complexBlockPattern) || []).length > 1;
+    
+    // 只有当存在复杂HTML结构块且文本内容占比很高时，才认为是混合内容
+    return hasComplexBlocks && textLength / content.length > 0.5;
   }
 
   /**
@@ -385,7 +413,22 @@ export class SmartContentDetector {
   private static generateCacheKey(content: string): string {
     // 使用内容长度和前100字符生成简单哈希
     const prefix = content.slice(0, 100);
-    return `${content.length}_${btoa(prefix).slice(0, 20)}`;
+    // 使用支持UTF-8的编码方式替代btoa
+    const hash = this.simpleHash(prefix);
+    return `${content.length}_${hash}`;
+  }
+
+  /**
+   * 简单哈希函数，支持UTF-8字符
+   */
+  private static simpleHash(str: string): string {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash; // Convert to 32bit integer
+    }
+    return Math.abs(hash).toString(36).slice(0, 20);
   }
 
   private static cacheResult(key: string, analysis: ContentAnalysis): void {

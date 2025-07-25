@@ -122,6 +122,46 @@ const MixedContentRenderer: React.FC<{
     return { imports, styles: processedStyles };
   };
   
+  // 处理内容中的Unicode转义字符和清理函数
+  const processContent = (content: string, isHTML: boolean = false) => {
+    // 1. 处理Unicode转义字符
+    let processed = content;
+    try {
+      // 处理不同格式的Unicode转义
+      // 格式1: \\u65e5 (双反斜杠)
+      processed = processed.replace(/\\\\u([\da-fA-F]{4})/g, (match, grp) => {
+        return String.fromCharCode(parseInt(grp, 16));
+      });
+      
+      // 格式2: \u65e5 (单反斜杠)  
+      processed = processed.replace(/\\u([\da-fA-F]{4})/g, (match, grp) => {
+        return String.fromCharCode(parseInt(grp, 16));
+      });
+      
+      // 尝试JSON.parse解码（如果内容看起来像JSON字符串）
+      if (processed.includes('\\u') && !processed.includes('<')) {
+        try {
+          processed = JSON.parse('"' + processed + '"');
+        } catch (jsonError) {
+          // 静默处理解码失败
+        }
+      }
+    } catch (error) {
+      console.warn('Unicode decoding failed:', error);
+    }
+
+    // 2. 如果是纯文本，确保清理任何意外的HTML标签
+    if (!isHTML) {
+      // 移除可能意外添加的HTML标签，但保留换行
+      processed = processed
+        .replace(/<br\s*\/?>/gi, '\n')  // 将br标签转换为换行
+        .replace(/<[^>]+>/g, '')        // 移除其他HTML标签
+        .trim();
+    }
+
+    return processed;
+  };
+  
   const { imports, styles: processedStyles } = processStyles(styles || '');
   
   // 根据内容类型选择渲染策略
@@ -132,19 +172,21 @@ const MixedContentRenderer: React.FC<{
       
       if (hasExternalStyles) {
         // 包含外部样式或复杂样式时，使用iframe保持完整性
+        const processedContent = processContent(analysis.blocks[0]?.content || '', true);
         return (
           <FullDocumentIframeRenderer 
-            content={analysis.blocks[0]?.content || ''} 
+            content={processedContent} 
             className={className}
           />
         );
       } else if (analysis.extractedBodyContent) {
         // 简单样式时，使用提取的body内容
+        const processedBodyContent = processContent(analysis.extractedBodyContent, true);
         return (
           <div className="full-document-wrapper">
             <div 
               className={`content-wrapper ${className || ''}`}
-              dangerouslySetInnerHTML={{ __html: analysis.extractedBodyContent }}
+              dangerouslySetInnerHTML={{ __html: processedBodyContent }}
             />
           </div>
         );
@@ -155,29 +197,46 @@ const MixedContentRenderer: React.FC<{
       // 混合内容：逐块渲染
       return (
         <div className={`content-wrapper prose prose-lg max-w-none p-8 ${className || ''}`}>
-          {analysis.blocks.map((block, index) => (
-            <div key={index} className="content-block">
-              {block.type === 'html' ? (
-                <div dangerouslySetInnerHTML={{ __html: block.content }} />
-              ) : (
-                <div className="text-block whitespace-pre-line leading-relaxed">
-                  {block.content}
-                </div>
-              )}
-            </div>
-          ))}
+          {analysis.blocks.map((block, index) => {
+            const processedContent = processContent(block.content, block.type === 'html');
+            return (
+              <div key={index} className="content-block">
+                {block.type === 'html' ? (
+                  <div dangerouslySetInnerHTML={{ __html: processedContent }} />
+                ) : (
+                  <div className="text-block whitespace-pre-line leading-relaxed">
+                    {processedContent}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       );
     }
     
     // 其他情况：使用第一个块的内容
     const content = analysis.blocks[0]?.content || '';
-    return (
-      <div 
-        className={`content-wrapper prose prose-lg max-w-none p-8 ${className || ''}`}
-        dangerouslySetInnerHTML={{ __html: content }}
-      />
-    );
+    const isHTML = analysis.blocks[0]?.type === 'html' || analysis.type === ContentType.HTML_FRAGMENT;
+    const processedContent = processContent(content, isHTML);
+    
+    if (isHTML) {
+      return (
+        <div 
+          className={`content-wrapper prose prose-lg max-w-none p-8 ${className || ''}`}
+          dangerouslySetInnerHTML={{ __html: processedContent }}
+        />
+      );
+    } else {
+      // 纯文本渲染
+      return (
+        <div className={`content-wrapper prose prose-lg max-w-none p-8 ${className || ''}`}>
+          <div className="text-block whitespace-pre-line leading-relaxed">
+            {processedContent}
+          </div>
+        </div>
+      );
+    }
   };
 
   // 对完整HTML文档，使用最小化的容器样式
@@ -230,6 +289,20 @@ const MixedContentRenderer: React.FC<{
             .content-wrapper th {
               background-color: #f9fafb;
               font-weight: bold;
+            }
+            /* 强制内联元素保持内联显示，防止意外换行 */
+            .content-wrapper strong,
+            .content-wrapper em,
+            .content-wrapper b,
+            .content-wrapper i,
+            .content-wrapper a,
+            .content-wrapper span,
+            .content-wrapper code {
+              display: inline !important;
+            }
+            /* 修复可能的prose类样式冲突 */
+            .content-wrapper p strong {
+              display: inline !important;
             }
           ` : ''}
           
