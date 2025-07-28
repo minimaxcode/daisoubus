@@ -35,10 +35,11 @@ const Company: React.FC = () => {
 
 
 
-  // API Key provided by the user
-  const apiKey = 'AIzaSyBjMv12htuJd3rK6rjQL1mMVgUpT-DVfMg';
-  const companyAddress = '千葉県我孫子市都12-31';
-  const mapSrc = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodeURIComponent(companyAddress)}`;
+  // 公司完整地址
+  const companyAddress = '〒270-1102 千葉県我孫子市都12-31';
+  
+  // Google Maps 无API Key版本 - 地址定位
+  const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(companyAddress)}&hl=ja&z=15&output=embed`;
 
   return (
     <div className="min-h-screen py-12">
