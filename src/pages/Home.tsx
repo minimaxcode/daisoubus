@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Plane, Globe, Users, Heart, CalendarDays, FileText, Bus, MapPin, Languages, Monitor } from 'lucide-react';
+import { ArrowRight, Plane, Globe, Users, Building, CalendarDays, FileText, Bus, MapPin, Languages, Monitor } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Home: React.FC = () => {
@@ -164,7 +164,7 @@ const Home: React.FC = () => {
                 image: '/images/japan-scenery.jpg'
               },
               {
-                icon: <Heart className="h-8 w-8" />,
+                icon: <Building className="h-8 w-8" />,
                 title: t('services.ceremony'),
                 description: t('services.ceremony.description'),
                 image: '/images/family-travel.jpg'

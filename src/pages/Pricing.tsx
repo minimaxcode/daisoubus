@@ -201,11 +201,11 @@ const Pricing: React.FC = () => {
                 {content.additional.icon}
                 {content.additional.title}
               </h3>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <ul className="space-y-3">
                 {content.additional.items.map((item, index) => (
-                  <li key={index} className="flex items-center space-x-2">
+                  <li key={index} className="flex items-center space-x-3 p-3 bg-white rounded-lg">
                      <div className="w-2 h-2 bg-daisou-accent rounded-full flex-shrink-0" />
-                     <span className="text-gray-700">{item.item}: <span className="font-semibold">{item.price}</span></span>
+                     <span className="text-gray-700 flex-1">{item.item}: <span className="font-semibold">{item.price}</span></span>
                   </li>
                 ))}
               </ul>

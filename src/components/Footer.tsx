@@ -62,6 +62,15 @@ const Footer: React.FC = () => {
                 <Mail className="h-4 w-4 text-daisou-accent" />
                 <span>{t('footer.email')}</span>
               </div>
+              <a 
+                href="https://www.facebook.com/profile.php?id=100070317061493" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center space-x-3 text-gray-300 hover:text-daisou-accent transition-colors"
+              >
+                <Facebook className="h-4 w-4 text-daisou-accent" />
+                <span>大爽観光バス</span>
+              </a>
             </div>
           </div>
 
@@ -112,21 +121,7 @@ const Footer: React.FC = () => {
                  <ArrowRight className="h-4 w-4 ml-2 transform transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
-            
-            <div className="mt-8">
-               <h4 className="text-base font-semibold mb-4 tracking-wider uppercase">SNS</h4>
-              <div className="flex space-x-4">
-                <a 
-                  href="https://www.facebook.com/profile.php?id=100070317061493" 
-                  aria-label="Facebook" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-daisou-accent transition-colors"
-                >
-                  <Facebook className="h-5 w-5" />
-                </a>
-              </div>
-            </div>
+
           </div>
         </div>
 

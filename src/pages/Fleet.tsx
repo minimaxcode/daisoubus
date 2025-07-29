@@ -10,7 +10,7 @@ const Fleet: React.FC = () => {
       name: t('fleet.large'),
       nameEn: t('fleet.large.name.en'),
       seats: t('fleet.large.seats'),
-      description: t('fleet.large.description'),
+      description: t('fleet.large.description.detail'),
       image: '/images/mid-size-bus.webp',
       features: [
         t('fleet.large.feature1'),
@@ -29,7 +29,7 @@ const Fleet: React.FC = () => {
       name: t('fleet.midsize'),
       nameEn: t('fleet.midsize.name.en'),
       seats: t('fleet.midsize.seats'),
-      description: t('fleet.midsize.description'),
+      description: t('fleet.midsize.description.detail'),
       image: '/images/mid-size-bus.webp',
       features: [
         t('fleet.midsize.feature1'),
@@ -48,7 +48,7 @@ const Fleet: React.FC = () => {
       name: t('fleet.rosa'),
       nameEn: t('fleet.rosa.name.en'),
       seats: t('fleet.rosa.seats'),
-      description: t('fleet.rosa.description'),
+      description: t('fleet.rosa.description.detail'),
       image: '/images/microbus-rosa.jpg',
       features: [
         t('fleet.rosa.feature1'),
@@ -67,7 +67,7 @@ const Fleet: React.FC = () => {
       name: t('fleet.coaster'),
       nameEn: t('fleet.coaster.name.en'),
       seats: t('fleet.coaster.seats'),
-      description: t('fleet.coaster.description'),
+      description: t('fleet.coaster.description.detail'),
       image: '/images/microbus-coaster.jpg',
       features: [
         t('fleet.coaster.feature1'),
@@ -86,7 +86,7 @@ const Fleet: React.FC = () => {
       name: t('fleet.vip'),
       nameEn: t('fleet.vip.name.en'),
       seats: t('fleet.vip.seats'),
-      description: t('fleet.vip.description'),
+      description: t('fleet.vip.description.detail'),
       image: '/images/microbus-rosa.jpg',
       features: [
         t('fleet.vip.feature1'),
@@ -105,7 +105,7 @@ const Fleet: React.FC = () => {
       name: t('fleet.commuter'),
       nameEn: t('fleet.commuter.name.en'),
       seats: t('fleet.commuter.seats'),
-      description: t('fleet.commuter.description'),
+      description: t('fleet.commuter.description.detail'),
       image: '/images/microbus-coaster.jpg',
       features: [
         t('fleet.commuter.feature1'),

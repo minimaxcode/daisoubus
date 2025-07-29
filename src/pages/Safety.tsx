@@ -173,8 +173,8 @@ const Safety: React.FC = () => {
         {/* Driver Training */}
         <div className="mb-20">
           <div className="bg-daisou-bg rounded-3xl p-12">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
+            <div className="flex flex-col lg:flex-row gap-12 items-start">
+              <div className="lg:w-[50%]">
                 <h2 className="text-3xl font-bold text-daisou-text mb-6">
                   {t('safety.training.title')}
                 </h2>
@@ -205,11 +205,11 @@ const Safety: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <div className="relative">
+              <div className="lg:w-[50%] w-full flex justify-center">
                 <img
                   src="/images/safety-training.jpg"
                   alt={t('safety.training.image.alt')}
-                  className="rounded-2xl shadow-xl w-full h-80 object-cover"
+                  className="rounded-2xl shadow-xl max-w-full max-h-96 object-contain"
                 />
               </div>
             </div>

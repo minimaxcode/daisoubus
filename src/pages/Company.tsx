@@ -162,19 +162,29 @@ const Company: React.FC = () => {
               <Calendar className="h-6 w-6 text-daisou-accent mr-2" />
               {t('company.history.title')}
             </h3>
-            <div className="space-y-6">
+            <div className="relative">
               {companyHistory.map((item, index) => (
-                <div key={index} className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-24 text-right">
-                    <span className="inline-block bg-daisou-accent text-white px-3 py-1 rounded-full text-sm font-medium">
-                      {item.year}
-                    </span>
+                <div key={index} className="relative flex items-start pb-4 last:pb-0">
+                  {/* Timeline connecting line between nodes (not through nodes) */}
+                  {index < companyHistory.length - 1 && (
+                    <div className="absolute left-3 top-8 w-[2px] h-14 bg-daisou-accent/40"></div>
+                  )}
+                  
+                  {/* Timeline node */}
+                  <div className="absolute left-0 top-2 w-6 h-6 bg-white border-2 border-daisou-accent rounded-full flex items-center justify-center z-20">
+                    <div className="w-2 h-2 bg-daisou-accent rounded-full"></div>
                   </div>
-                  <div className="flex-1">
-                    <h4 className="font-semibold text-daisou-text mb-1">
-                      {item.event}
-                    </h4>
-                    <p className="text-gray-600">
+                  
+                  <div className="ml-8">
+                    <div className="flex items-center gap-4 mb-1">
+                      <span className="inline-block bg-daisou-accent text-white px-3 py-1 rounded-full text-sm font-medium">
+                        {item.year}
+                      </span>
+                      <h4 className="font-semibold text-daisou-text">
+                        {item.event}
+                      </h4>
+                    </div>
+                    <p className="text-gray-600 text-sm">
                       {item.description}
                     </p>
                   </div>
@@ -219,9 +229,9 @@ const Company: React.FC = () => {
             <MapPin className="h-6 w-6 text-daisou-accent mr-2" />
             {t('company.location.title')}
           </h3>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div>
-                              <div className="space-y-4">
+          <div className="flex flex-col lg:flex-row gap-8">
+            <div className="lg:w-[35%]">
+              <div className="space-y-4">
                 <div>
                   <h4 className="font-semibold text-daisou-text mb-2">{t('company.location.address.label')}</h4>
                   <p className="text-gray-700">
@@ -248,16 +258,18 @@ const Company: React.FC = () => {
               </div>
             </div>
             {/* START: Google Map Section */}
-            <div className="bg-gray-200 rounded-xl overflow-hidden h-80 lg:h-auto">
-              <iframe
-                src={mapSrc}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={true}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
+            <div className="lg:w-[65%] w-full bg-gray-200 rounded-xl overflow-hidden">
+              <div className="w-full h-96 lg:aspect-square">
+                <iframe
+                  src={mapSrc}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
             </div>
             {/* END: Google Map Section */}
           </div>
