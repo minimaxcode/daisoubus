@@ -28,7 +28,7 @@ const translations = {
     'nav.pricing': '料金',
     'nav.process': 'ご利用の流れ',
     'nav.company': '会社概要',
-    'nav.faq': 'FAQ',
+    'nav.faq': 'よくある質問',
     'nav.careers': '採用情報',
     'nav.corporate': '法人向け',
     'nav.contact': 'お問い合わせ',
