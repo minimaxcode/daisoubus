@@ -87,7 +87,7 @@ const Home: React.FC = () => {
                 icon: <Bus className="h-6 w-6" />,
                 title: t('company.services.charter'),
                 description: t('company.services.charter.desc'),
-                image: '/images/mid-size-bus.webp'
+                image: '/images/large-sized-bus-2.jpg'
               },
               {
                 icon: <MapPin className="h-6 w-6" />,
@@ -99,21 +99,21 @@ const Home: React.FC = () => {
                 icon: <Languages className="h-6 w-6" />,
                 title: t('company.services.rental'),
                 description: t('company.services.rental.desc'),
-                image: '/images/contact-support.jpg'
+                image: '/images/tour-guide.png'
               },
               {
                 icon: <Monitor className="h-6 w-6" />,
                 title: t('company.services.gym'),
                 description: t('company.services.gym.desc'),
-                image: '/images/team-photo.jpg'
+                image: '/images/ad.jpg'
               }
             ].map((service, index) => (
               <div key={index} className="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
-                <div className="h-36 overflow-hidden">
+                <div className="h-44 md:h-48 bg-white overflow-hidden">
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="p-4">
@@ -161,33 +161,39 @@ const Home: React.FC = () => {
                 icon: <Users className="h-8 w-8" />,
                 title: t('services.daytrip'),
                 description: t('services.daytrip.description'),
-                image: '/images/japan-scenery.jpg'
+                image: '/images/spa.jpg'
               },
               {
                 icon: <Building className="h-8 w-8" />,
                 title: t('services.ceremony'),
                 description: t('services.ceremony.description'),
-                image: '/images/family-travel.jpg'
+                image: '/images/jp-wedding.webp'
               },
               {
                 icon: <CalendarDays className="h-8 w-8" />,
                 title: t('services.event'),
                 description: t('services.event.description'),
-                image: '/images/team-photo.jpg'
+                image: '/images/exhibition.jpg'
               },
               {
                 icon: <FileText className="h-8 w-8" />,
                 title: t('services.contract'),
                 description: t('services.contract.description'),
-                image: '/images/mid-size-bus.webp'
+                image: '/images/large-sized-bus-2.jpg'
               }
             ].map((service, index) => (
               <div key={index} className="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
-                <div className="h-48 overflow-hidden">
+                <div className={service.title === t('services.contract') ? 'relative h-48 bg-white flex items-center justify-center overflow-hidden' : 'h-48 overflow-hidden'}>
+                  {service.title === t('services.contract') && (
+                    <div
+                      className="absolute inset-0 bg-center bg-cover opacity-40 blur-sm pointer-events-none"
+                      style={{ backgroundImage: `url(${service.image})` }}
+                    />
+                  )}
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className={service.title === t('services.contract') ? 'relative z-10 max-h-full w-auto object-contain' : 'w-full h-full object-cover group-hover:scale-110 transition-transform duration-300'}
                   />
                 </div>
                 <div className="p-6">
@@ -223,45 +229,45 @@ const Home: React.FC = () => {
                 name: t('fleet.large'),
                 seats: t('fleet.large.seats'),
                 description: t('fleet.large.description'),
-                image: '/images/mid-size-bus.webp'
+                image: '/images/large-sized-bus-1.jpg'
               },
               {
                 name: t('fleet.midsize'),
                 seats: t('fleet.midsize.seats'),
                 description: t('fleet.midsize.description'),
-                image: '/images/mid-size-bus.webp'
+                image: '/images/mid-size-coach.jpg'
               },
               {
                 name: t('fleet.rosa'),
                 seats: t('fleet.rosa.seats'),
                 description: t('fleet.rosa.description'),
-                image: '/images/microbus-rosa.jpg'
+                image: '/images/micro-bus-superlong-type.jpg'
               },
               {
                 name: t('fleet.coaster'),
                 seats: t('fleet.coaster.seats'),
                 description: t('fleet.coaster.description'),
-                image: '/images/microbus-coaster.jpg'
+                image: '/images/microbus-coaster-2.jpg'
               },
               {
                 name: t('fleet.vip'),
                 seats: t('fleet.vip.seats'),
                 description: t('fleet.vip.description'),
-                image: '/images/microbus-rosa.jpg'
+                image: '/images/microbus-vip-specification.jpg'
               },
               {
                 name: t('fleet.commuter'),
                 seats: t('fleet.commuter.seats'),
                 description: t('fleet.commuter.description'),
-                image: '/images/microbus-coaster.jpg'
+                image: '/images/hiace.jpg'
               }
             ].map((vehicle, index) => (
               <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                <div className="h-64 overflow-hidden">
+                <div className="h-64 bg-white flex items-center justify-center">
                   <img
                     src={vehicle.image}
                     alt={vehicle.name}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    className="max-h-full w-auto object-contain"
                   />
                 </div>
                 <div className="p-6">

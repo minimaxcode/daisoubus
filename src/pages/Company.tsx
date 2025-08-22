@@ -57,7 +57,7 @@ const Company: React.FC = () => {
         {/* CEO Message */}
         <div className="mb-20">
           <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+            <div className="grid grid-cols-1 gap-0">
               <div className="p-8 lg:p-12 flex flex-col justify-center">
                 <h2 className="text-3xl font-bold text-daisou-text mb-6">
                   {t('company.ceo.title')}
@@ -79,13 +79,6 @@ const Company: React.FC = () => {
                     <p className="text-gray-600">Chiho Sawamura</p>
                   </div>
                 </div>
-              </div>
-              <div className="relative h-80 lg:h-auto">
-                <img
-                  src="/images/team-photo.jpg"
-                  alt={t('company.ceo.name')}
-                  className="w-full h-full object-cover"
-                />
               </div>
             </div>
           </div>

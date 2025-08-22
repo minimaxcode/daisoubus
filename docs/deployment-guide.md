@@ -232,7 +232,7 @@ Get-Content dist\assets\index-*.js | Select-String "localhost"
 ```
 scp -P 8022 -r -i "$env:USERPROFILE\.ssh\id_rsa" dist/* r9048051@www1099.onamae.ne.jp:public_html/daisoubus.jp/
 
-#创建api目录上传
+#创建api目录上传邮件发送相关的api
 sh -p 8022 -i "$env:USERPROFILE\.ssh\id_rsa" r9048051@www1099.onamae.ne.jp "mkdir -p public_html/daisoubus.jp/api"
 scp -P 8022 -i "$env:USERPROFILE\.ssh\id_rsa" api/send_email.php r9048051@www1099.onamae.ne.jp:public_html/daisoubus.jp/api/
 ```
