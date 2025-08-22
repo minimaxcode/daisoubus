@@ -11,7 +11,8 @@ const Fleet: React.FC = () => {
       nameEn: t('fleet.large.name.en'),
       seats: t('fleet.large.seats'),
       description: t('fleet.large.description.detail'),
-      image: '/images/large-sized-bus-1.jpg',
+      imageSmall: '/images/large-sized-bus-1-640.webp',
+      imageLarge: '/images/large-sized-bus-1-1280.webp',
       features: [
         t('fleet.large.feature1'),
         t('fleet.large.feature2'),
@@ -30,7 +31,8 @@ const Fleet: React.FC = () => {
       nameEn: t('fleet.midsize.name.en'),
       seats: t('fleet.midsize.seats'),
       description: t('fleet.midsize.description.detail'),
-      image: '/images/mid-size-coach.jpg',
+      imageSmall: '/images/mid-size-coach-640.webp',
+      imageLarge: '/images/mid-size-coach-1280.webp',
       features: [
         t('fleet.midsize.feature1'),
         t('fleet.midsize.feature2'),
@@ -49,7 +51,8 @@ const Fleet: React.FC = () => {
       nameEn: t('fleet.rosa.name.en'),
       seats: t('fleet.rosa.seats'),
       description: t('fleet.rosa.description.detail'),
-      image: '/images/micro-bus-superlong-type.jpg',
+      imageSmall: '/images/micro-bus-superlong-type-640.webp',
+      imageLarge: '/images/micro-bus-superlong-type-1280.webp',
       features: [
         t('fleet.rosa.feature1'),
         t('fleet.rosa.feature2'),
@@ -68,7 +71,8 @@ const Fleet: React.FC = () => {
       nameEn: t('fleet.coaster.name.en'),
       seats: t('fleet.coaster.seats'),
       description: t('fleet.coaster.description.detail'),
-      image: '/images/microbus-coaster-2.jpg',
+      imageSmall: '/images/microbus-coaster-2-640.webp',
+      imageLarge: '/images/microbus-coaster-2-1280.webp',
       features: [
         t('fleet.coaster.feature1'),
         t('fleet.coaster.feature2'),
@@ -87,7 +91,8 @@ const Fleet: React.FC = () => {
       nameEn: t('fleet.vip.name.en'),
       seats: t('fleet.vip.seats'),
       description: t('fleet.vip.description.detail'),
-      image: '/images/microbus-vip-specification.jpg',
+      imageSmall: '/images/microbus-vip-specification-640.webp',
+      imageLarge: '/images/microbus-vip-specification-1280.webp',
       features: [
         t('fleet.vip.feature1'),
         t('fleet.vip.feature2'),
@@ -106,7 +111,8 @@ const Fleet: React.FC = () => {
       nameEn: t('fleet.commuter.name.en'),
       seats: t('fleet.commuter.seats'),
       description: t('fleet.commuter.description.detail'),
-      image: '/images/hiace.jpg',
+      imageSmall: '/images/hiace-640.webp',
+      imageLarge: '/images/hiace-1280.webp',
       features: [
         t('fleet.commuter.feature1'),
         t('fleet.commuter.feature2'),
@@ -144,7 +150,9 @@ const Fleet: React.FC = () => {
                 <div className={`relative h-80 lg:h-auto ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
                   <div className="h-80 lg:h-full bg-white flex items-center justify-center">
                     <img
-                      src={vehicle.image}
+                      src={vehicle.imageLarge}
+                      srcSet={`${vehicle.imageSmall} 640w, ${vehicle.imageLarge} 1280w`}
+                      sizes="(max-width:1024px) 100vw, 640px"
                       alt={vehicle.name}
                       className="max-h-full w-auto object-contain"
                     />

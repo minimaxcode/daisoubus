@@ -1,10 +1,43 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Plane, Globe, Users, Building, CalendarDays, FileText, Bus, MapPin, Languages, Monitor } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Home: React.FC = () => {
   const { t } = useLanguage();
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+
+    const saveData = (navigator as any)?.connection?.saveData;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (saveData || reduceMotion) {
+      return; // 使用 poster，不加载视频资源
+    }
+
+    const loadSources = () => {
+      el.querySelectorAll('source').forEach((s) => {
+        const ds = (s as HTMLSourceElement).dataset.src;
+        if (ds) (s as HTMLSourceElement).src = ds;
+      });
+      el.load();
+    };
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          loadSources();
+          io.disconnect();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
     <div className="min-h-screen">
@@ -46,11 +79,21 @@ const Home: React.FC = () => {
             </div>
 
             <div className="relative">
-              <img
-                src="/images/japan-scenery.jpg"
-                alt="Japan Travel Scenery"
-                className="rounded-2xl shadow-2xl w-full h-96 object-cover"
-              />
+              <video
+                ref={videoRef}
+                className="rounded-2xl shadow-2xl w-full h-96 object-cover motion-reduce:hidden"
+                poster="/images/japan-video-scenery-1280.webp"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+              >
+                <source data-src="/video/hero-1080.webm" type="video/webm" />
+                <source data-src="/video/hero-1080.mp4" type="video/mp4" />
+                <source data-src="/video/hero-720.webm" type="video/webm" media="(max-width: 1024px)" />
+                <source data-src="/video/hero-720.mp4" type="video/mp4" media="(max-width: 1024px)" />
+              </video>
               <div className="absolute -bottom-4 -left-4 bg-white p-4 rounded-xl shadow-lg">
                 <div className="flex items-center space-x-2">
                   <img 
@@ -87,31 +130,37 @@ const Home: React.FC = () => {
                 icon: <Bus className="h-6 w-6" />,
                 title: t('company.services.charter'),
                 description: t('company.services.charter.desc'),
-                image: '/images/large-sized-bus-2.jpg'
+                imageSmall: '/images/large-sized-bus-2-640.webp',
+                imageLarge: '/images/large-sized-bus-2-1280.webp'
               },
               {
                 icon: <MapPin className="h-6 w-6" />,
                 title: t('company.services.guide'),
                 description: t('company.services.guide.desc'),
-                image: '/images/japan-scenery.jpg'
+                imageSmall: '/images/cherry-blossom-420.webp',
+                imageLarge: '/images/cherry-blossom-840.webp'
               },
               {
                 icon: <Languages className="h-6 w-6" />,
                 title: t('company.services.rental'),
                 description: t('company.services.rental.desc'),
-                image: '/images/tour-guide.png'
+                imageSmall: '/images/tour-guide-420.webp',
+                imageLarge: '/images/tour-guide-840.webp'
               },
               {
                 icon: <Monitor className="h-6 w-6" />,
                 title: t('company.services.gym'),
                 description: t('company.services.gym.desc'),
-                image: '/images/ad.jpg'
+                imageSmall: '/images/ad-420.webp',
+                imageLarge: '/images/ad-840.webp'
               }
             ].map((service, index) => (
               <div key={index} className="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
                 <div className="h-44 md:h-48 bg-white overflow-hidden">
                   <img
-                    src={service.image}
+                    src={service.imageLarge}
+                    srcSet={`${service.imageSmall} 420w, ${service.imageLarge} 840w`}
+                    sizes="(max-width:768px) 100vw, 420px"
                     alt={service.title}
                     className="w-full h-full object-cover"
                   />
@@ -149,51 +198,53 @@ const Home: React.FC = () => {
                 icon: <Plane className="h-8 w-8" />,
                 title: t('services.airport'),
                 description: t('services.airport.description'),
-                image: '/images/narita-airport.jpg'
+                imageSmall: '/images/narita-airport-420.webp',
+                imageLarge: '/images/narita-airport-840.webp'
               },
               {
                 icon: <Globe className="h-8 w-8" />,
                 title: t('services.inbound'),
                 description: t('services.inbound.description'),
-                image: '/images/cherry-blossom.jpg'
+                imageSmall: '/images/cherry-blossom-420.webp',
+                imageLarge: '/images/cherry-blossom-840.webp'
               },
               {
                 icon: <Users className="h-8 w-8" />,
                 title: t('services.daytrip'),
                 description: t('services.daytrip.description'),
-                image: '/images/spa.jpg'
+                imageSmall: '/images/spa-420.webp',
+                imageLarge: '/images/spa-840.webp'
               },
               {
                 icon: <Building className="h-8 w-8" />,
                 title: t('services.ceremony'),
                 description: t('services.ceremony.description'),
-                image: '/images/jp-wedding.webp'
+                imageSmall: '/images/jp-wedding-420.webp',
+                imageLarge: '/images/jp-wedding-840.webp'
               },
               {
                 icon: <CalendarDays className="h-8 w-8" />,
                 title: t('services.event'),
                 description: t('services.event.description'),
-                image: '/images/exhibition.jpg'
+                imageSmall: '/images/exhibition-420.webp',
+                imageLarge: '/images/exhibition-840.webp'
               },
               {
                 icon: <FileText className="h-8 w-8" />,
                 title: t('services.contract'),
                 description: t('services.contract.description'),
-                image: '/images/large-sized-bus-2.jpg'
+                imageSmall: '/images/large-sized-bus-2-640.webp',
+                imageLarge: '/images/large-sized-bus-2-1280.webp'
               }
             ].map((service, index) => (
               <div key={index} className="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
-                <div className={service.title === t('services.contract') ? 'relative h-48 bg-white flex items-center justify-center overflow-hidden' : 'h-48 overflow-hidden'}>
-                  {service.title === t('services.contract') && (
-                    <div
-                      className="absolute inset-0 bg-center bg-cover opacity-40 blur-sm pointer-events-none"
-                      style={{ backgroundImage: `url(${service.image})` }}
-                    />
-                  )}
+                <div className={service.title === t('services.contract') ? 'h-48 bg-white flex items-center justify-center' : 'h-48 overflow-hidden'}>
                   <img
-                    src={service.image}
+                    src={service.imageLarge}
+                    srcSet={`${service.imageSmall} 420w, ${service.imageLarge} 840w`}
+                    sizes="(max-width:768px) 100vw, 420px"
                     alt={service.title}
-                    className={service.title === t('services.contract') ? 'relative z-10 max-h-full w-auto object-contain' : 'w-full h-full object-cover group-hover:scale-110 transition-transform duration-300'}
+                    className={service.title === t('services.contract') ? 'max-h-full w-auto object-contain' : 'w-full h-full object-cover group-hover:scale-110 transition-transform duration-300'}
                   />
                 </div>
                 <div className="p-6">
@@ -229,43 +280,51 @@ const Home: React.FC = () => {
                 name: t('fleet.large'),
                 seats: t('fleet.large.seats'),
                 description: t('fleet.large.description'),
-                image: '/images/large-sized-bus-1.jpg'
+                imageSmall: '/images/large-sized-bus-1-640.webp',
+                imageLarge: '/images/large-sized-bus-1-1280.webp'
               },
               {
                 name: t('fleet.midsize'),
                 seats: t('fleet.midsize.seats'),
                 description: t('fleet.midsize.description'),
-                image: '/images/mid-size-coach.jpg'
+                imageSmall: '/images/mid-size-coach-640.webp',
+                imageLarge: '/images/mid-size-coach-1280.webp'
               },
               {
                 name: t('fleet.rosa'),
                 seats: t('fleet.rosa.seats'),
                 description: t('fleet.rosa.description'),
-                image: '/images/micro-bus-superlong-type.jpg'
+                imageSmall: '/images/micro-bus-superlong-type-640.webp',
+                imageLarge: '/images/micro-bus-superlong-type-1280.webp'
               },
               {
                 name: t('fleet.coaster'),
                 seats: t('fleet.coaster.seats'),
                 description: t('fleet.coaster.description'),
-                image: '/images/microbus-coaster-2.jpg'
+                imageSmall: '/images/microbus-coaster-2-640.webp',
+                imageLarge: '/images/microbus-coaster-2-1280.webp'
               },
               {
                 name: t('fleet.vip'),
                 seats: t('fleet.vip.seats'),
                 description: t('fleet.vip.description'),
-                image: '/images/microbus-vip-specification.jpg'
+                imageSmall: '/images/microbus-vip-specification-640.webp',
+                imageLarge: '/images/microbus-vip-specification-1280.webp'
               },
               {
                 name: t('fleet.commuter'),
                 seats: t('fleet.commuter.seats'),
                 description: t('fleet.commuter.description'),
-                image: '/images/hiace.jpg'
+                imageSmall: '/images/hiace-640.webp',
+                imageLarge: '/images/hiace-1280.webp'
               }
             ].map((vehicle, index) => (
               <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
                 <div className="h-64 bg-white flex items-center justify-center">
                   <img
-                    src={vehicle.image}
+                    src={vehicle.imageLarge}
+                    srcSet={`${vehicle.imageSmall} 640w, ${vehicle.imageLarge} 1280w`}
+                    sizes="(max-width:1024px) 100vw, 640px"
                     alt={vehicle.name}
                     className="max-h-full w-auto object-contain"
                   />
