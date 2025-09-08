@@ -1,6 +1,7 @@
 import React from 'react';
 import { Users, Luggage, Shield, Star } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import VehicleCarousel, { CarouselSlide } from '../components/VehicleCarousel';
 
 const Fleet: React.FC = () => {
   const { t } = useLanguage();
@@ -11,8 +12,13 @@ const Fleet: React.FC = () => {
       nameEn: t('fleet.large.name.en'),
       seats: t('fleet.large.seats'),
       description: t('fleet.large.description.detail'),
-      imageSmall: '/images/large-sized-bus-1-640.webp',
-      imageLarge: '/images/large-sized-bus-1-1280.webp',
+      slides: [
+        { small: '/images/large-sized-bus-1-640.webp', large: '/images/large-sized-bus-1-1280.webp', alt: t('fleet.large') },
+        { small: '/images/large-sized-bus-1-internal-1-640.webp', large: '/images/large-sized-bus-1-internal-1-1280.webp', alt: t('fleet.large') },
+        { small: '/images/large-sized-bus-1-internal-2-640.webp', large: '/images/large-sized-bus-1-internal-2-1280.webp', alt: t('fleet.large') },
+        { small: '/images/large-sized-bus-1-trunk-1-640.webp', large: '/images/large-sized-bus-1-trunk-1-1280.webp', alt: t('fleet.large') },
+        { small: '/images/large-sized-bus-1-trunk-2-640.webp', large: '/images/large-sized-bus-1-trunk-2-1280.webp', alt: t('fleet.large') },
+      ] as CarouselSlide[],
       features: [
         t('fleet.large.feature1'),
         t('fleet.large.feature2'),
@@ -31,8 +37,13 @@ const Fleet: React.FC = () => {
       nameEn: t('fleet.midsize.name.en'),
       seats: t('fleet.midsize.seats'),
       description: t('fleet.midsize.description.detail'),
-      imageSmall: '/images/mid-size-coach-640.webp',
-      imageLarge: '/images/mid-size-coach-1280.webp',
+      slides: [
+        { small: '/images/mid-size-coach-640.webp', large: '/images/mid-size-coach-1280.webp', alt: t('fleet.midsize') },
+        { small: '/images/mid-size-coach-internal-1-640.webp', large: '/images/mid-size-coach-internal-1-1280.webp', alt: t('fleet.midsize') },
+        { small: '/images/mid-size-coach-internal-2-640.webp', large: '/images/mid-size-coach-internal-2-1280.webp', alt: t('fleet.midsize') },
+        { small: '/images/mid-size-coach-trunk-1-640.webp', large: '/images/mid-size-coach-trunk-1-1280.webp', alt: t('fleet.midsize') },
+        { small: '/images/mid-size-coach-trunk-2-640.webp', large: '/images/mid-size-coach-trunk-2-1280.webp', alt: t('fleet.midsize') },
+      ] as CarouselSlide[],
       features: [
         t('fleet.midsize.feature1'),
         t('fleet.midsize.feature2'),
@@ -51,8 +62,13 @@ const Fleet: React.FC = () => {
       nameEn: t('fleet.rosa.name.en'),
       seats: t('fleet.rosa.seats'),
       description: t('fleet.rosa.description.detail'),
-      imageSmall: '/images/micro-bus-superlong-type-640.webp',
-      imageLarge: '/images/micro-bus-superlong-type-1280.webp',
+      slides: [
+        { small: '/images/micro-bus-superlong-type-640.webp', large: '/images/micro-bus-superlong-type-1280.webp', alt: t('fleet.rosa') },
+        { small: '/images/micro-bus-superlong-type-internal-1-640.webp', large: '/images/micro-bus-superlong-type-internal-1-1280.webp', alt: t('fleet.rosa') },
+        { small: '/images/micro-bus-superlong-type-internal-2-640.webp', large: '/images/micro-bus-superlong-type-internal-2-1280.webp', alt: t('fleet.rosa') },
+        { small: '/images/micro-bus-superlong-type-trunk-1-640.webp', large: '/images/micro-bus-superlong-type-trunk-1-1280.webp', alt: t('fleet.rosa') },
+        { small: '/images/micro-bus-superlong-type-trunk-2-640.webp', large: '/images/micro-bus-superlong-type-trunk-2-1280.webp', alt: t('fleet.rosa') },
+      ] as CarouselSlide[],
       features: [
         t('fleet.rosa.feature1'),
         t('fleet.rosa.feature2'),
@@ -71,8 +87,13 @@ const Fleet: React.FC = () => {
       nameEn: t('fleet.coaster.name.en'),
       seats: t('fleet.coaster.seats'),
       description: t('fleet.coaster.description.detail'),
-      imageSmall: '/images/microbus-coaster-2-640.webp',
-      imageLarge: '/images/microbus-coaster-2-1280.webp',
+      slides: [
+        { small: '/images/microbus-coaster-2-640.webp', large: '/images/microbus-coaster-2-1280.webp', alt: t('fleet.coaster') },
+        { small: '/images/microbus-coaster-2-internal-1-640.webp', large: '/images/microbus-coaster-2-internal-1-1280.webp', alt: t('fleet.coaster') },
+        { small: '/images/microbus-coaster-2-internal-2-640.webp', large: '/images/microbus-coaster-2-internal-2-1280.webp', alt: t('fleet.coaster') },
+        { small: '/images/microbus-coaster-2-trunk-1-640.webp', large: '/images/microbus-coaster-2-trunk-1-1280.webp', alt: t('fleet.coaster') },
+        { small: '/images/microbus-coaster-2-trunk-2-640.webp', large: '/images/microbus-coaster-2-trunk-2-1280.webp', alt: t('fleet.coaster') },
+      ] as CarouselSlide[],
       features: [
         t('fleet.coaster.feature1'),
         t('fleet.coaster.feature2'),
@@ -91,8 +112,13 @@ const Fleet: React.FC = () => {
       nameEn: t('fleet.vip.name.en'),
       seats: t('fleet.vip.seats'),
       description: t('fleet.vip.description.detail'),
-      imageSmall: '/images/microbus-vip-specification-640.webp',
-      imageLarge: '/images/microbus-vip-specification-1280.webp',
+      slides: [
+        { small: '/images/microbus-vip-specification-640.webp', large: '/images/microbus-vip-specification-1280.webp', alt: t('fleet.vip') },
+        { small: '/images/microbus-vip-specification-internal-1-640.webp', large: '/images/microbus-vip-specification-internal-1-1280.webp', alt: t('fleet.vip') },
+        { small: '/images/microbus-vip-specification-internal-2-640.webp', large: '/images/microbus-vip-specification-internal-2-1280.webp', alt: t('fleet.vip') },
+        { small: '/images/microbus-vip-specification-trunk-1-640.webp', large: '/images/microbus-vip-specification-trunk-1-1280.webp', alt: t('fleet.vip') },
+        { small: '/images/microbus-vip-specification-trunk-2-640.webp', large: '/images/microbus-vip-specification-trunk-2-1280.webp', alt: t('fleet.vip') },
+      ] as CarouselSlide[],
       features: [
         t('fleet.vip.feature1'),
         t('fleet.vip.feature2'),
@@ -111,8 +137,13 @@ const Fleet: React.FC = () => {
       nameEn: t('fleet.commuter.name.en'),
       seats: t('fleet.commuter.seats'),
       description: t('fleet.commuter.description.detail'),
-      imageSmall: '/images/hiace-640.webp',
-      imageLarge: '/images/hiace-1280.webp',
+      slides: [
+        { small: '/images/hiace-640.webp', large: '/images/hiace-1280.webp', alt: t('fleet.commuter') },
+        { small: '/images/hiace-internal-1-640.webp', large: '/images/hiace-internal-1-1280.webp', alt: t('fleet.commuter') },
+        { small: '/images/hiace-internal-2-640.webp', large: '/images/hiace-internal-2-1280.webp', alt: t('fleet.commuter') },
+        { small: '/images/hiace-trunk-1-640.webp', large: '/images/hiace-trunk-1-1280.webp', alt: t('fleet.commuter') },
+        { small: '/images/hiace-trunk-2-640.webp', large: '/images/hiace-trunk-2-1280.webp', alt: t('fleet.commuter') },
+      ] as CarouselSlide[],
       features: [
         t('fleet.commuter.feature1'),
         t('fleet.commuter.feature2'),
@@ -149,13 +180,7 @@ const Fleet: React.FC = () => {
                 {/* Image */}
                 <div className={`relative h-80 lg:h-auto ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
                   <div className="h-80 lg:h-full bg-white flex items-center justify-center">
-                    <img
-                      src={vehicle.imageLarge}
-                      srcSet={`${vehicle.imageSmall} 640w, ${vehicle.imageLarge} 1280w`}
-                      sizes="(max-width:1024px) 100vw, 640px"
-                      alt={vehicle.name}
-                      className="max-h-full w-auto object-contain"
-                    />
+                    <VehicleCarousel slides={vehicle.slides} className="w-full h-full" />
                   </div>
                   <div className="absolute top-4 left-4 bg-daisou-accent text-white px-4 py-2 rounded-full font-semibold">
                     {vehicle.seats}

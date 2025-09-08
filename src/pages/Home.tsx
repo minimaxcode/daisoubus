@@ -50,6 +50,9 @@ const Home: React.FC = () => {
                 <h1 className="text-4xl lg:text-5xl font-bold text-daisou-accent leading-tight">
                   {t('hero.title')}
                 </h1>
+                <p className="text-2xl lg:text-3xl font-bold text-gray-600 leading-relaxed max-w-lg">
+                  {t('hero.subtitle')}
+                </p>
                 <p className="text-lg text-gray-600 leading-relaxed max-w-lg">
                   {t('hero.description')}
                 </p>
@@ -73,7 +76,7 @@ const Home: React.FC = () => {
                   to="/fleet"
                   className="inline-flex items-center justify-center px-8 py-3 border-2 border-daisou-accent text-daisou-accent hover:bg-daisou-accent hover:text-white font-semibold rounded-full transition-colors duration-200"
                 >
-                  {t('nav.fleet')}
+                  {t('home.hero.fleet_button')}
                 </Link>
               </div>
             </div>

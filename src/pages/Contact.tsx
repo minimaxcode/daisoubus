@@ -158,6 +158,7 @@ const Contact: React.FC = () => {
                   <p className="text-gray-600">LINE: fanta0505</p>
                   <p className="text-gray-600">WeChat: pandababy20</p>
                   <p className="text-gray-600">Facebook: 大爽観光バス</p>
+                  <p className="text-gray-600">WhatsApp: +81 80-6588-4932</p>
                 </div>
               </div>
             </div>
@@ -353,7 +354,7 @@ const Contact: React.FC = () => {
         </div>
 
         {/* Emergency Contact */}
-        <div className="mt-16 bg-red-50 border border-red-200 rounded-2xl p-8">
+        {/* <div className="mt-16 bg-red-50 border border-red-200 rounded-2xl p-8">
           <div className="text-center">
             <h3 className="text-2xl font-bold text-red-700 mb-4">
               {t('contact.emergency.title')}
@@ -369,7 +370,7 @@ const Contact: React.FC = () => {
               {t('contact.emergency.call')}
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

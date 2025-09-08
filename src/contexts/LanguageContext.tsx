@@ -25,6 +25,7 @@ const translations = {
     'nav.home': 'ホーム',
     'nav.news': 'ニュース',
     'nav.fleet': 'バス紹介',
+    'home.hero.fleet_button': 'バス紹介',
     'nav.pricing': '料金',
     'nav.process': 'ご利用の流れ',
     'nav.company': '会社概要',
@@ -46,14 +47,15 @@ const translations = {
     
     // Hero section
     'hero.title': 'すべては笑顔のために',
-    'hero.description': '2019年より一般貸切旅客自動車運送事業を開始。成田空港を基点に関東一円へご案内し、ご要望に応じ東北・関西方面も対応可能です。',
+    'hero.subtitle': '大爽観光バス',
+    'hero.description': 'お客様のニーズに合わせた最適な車種\nおよび旅程プランを提案し、\n今まで他社に実現ができなかった\n最大限に柔軟な対応を目指して行きます。',
     'hero.cta': 'お問い合わせ',
     
     // Services  
     'services.title': 'サービス紹介',
     'usage.title': '利用シーンの紹介',
     'services.airport': '空港送迎',
-    'services.airport.description': '成田・羽田など空港からホテルまでの送迎ご利用',
+    'services.airport.description': '成田空港・羽田空港などホテルの送迎',
     'services.inbound': 'インバウンド旅行',
     'services.inbound.description': '外国人観光客のツアー利用',
     'services.daytrip': '日帰り旅行',
@@ -513,6 +515,8 @@ const translations = {
     'nav.home': 'Home',
     'nav.news': 'News',
     'nav.fleet': 'Fleet',
+    // Home Hero button label (separate from nav)
+    'home.hero.fleet_button': 'Fleet Type of bus',
     'nav.pricing': 'Pricing',
     'nav.process': 'Process',
     'nav.company': 'Company',
@@ -534,14 +538,15 @@ const translations = {
     
     // Hero section
     'hero.title': 'All for Smiles',
-    'hero.description': 'Since 2019 we have provided charter transport for inbound travellers, greeting guests at Narita Airport and covering Kanto—and, on request, Tohoku or Kansai.',
+    'hero.subtitle': 'DAISOU TRAVEL  BUS',
+    'hero.description': 'We design the perfect combinationof vehicles and travel plans to matcheach customer’s needs. With a commitment to flexibility beyond what other companies can offer, we strive to make every journey uniquely comfortable and memorable.',
     'hero.cta': 'Contact Us',
     
     // Services
     'services.title': 'Our Services',
     'usage.title': 'Usage Scenarios',
     'services.airport': 'Airport Transfer',
-    'services.airport.description': 'Transfer services from airports like Narita and Haneda to hotels',
+    'services.airport.description': 'Transfer services from Narita airports and Haneda airports',
     'services.inbound': 'Inbound Tourism',
     'services.inbound.description': 'Tour services for international tourists',
     'services.daytrip': 'Day Trips',
@@ -583,9 +588,9 @@ const translations = {
     'fleet.commuter.description.detail': 'Perfect for small trips',
     
     // Contact
-    'contact.title': 'Contact Us',
-    'contact.response': 'We aim to reply within two business days.',
-    'contact.urgent': 'For urgent matters, call or message +81 80-6588-4932 (Sawamura).',
+    'contact.title': 'Get In Touch with Us',
+    'contact.response': 'We\'d love to hear from you. ',
+    'contact.urgent': 'Whether you have a question about our services, pricing, or anything else, our team is ready to answer all your questions.',
     'contact.name': 'Name',
     'contact.company': 'Company',
     'contact.email': 'E-mail',

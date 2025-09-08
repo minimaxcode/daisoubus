@@ -19,11 +19,30 @@ foreach ($f in $veh) {
   }
 }
 ```
+``` powershell
+$veh = @(
+  'micro-bus-superlong-type-internal-1.jpg','micro-bus-superlong-type-internal-2.jpg',
+  'micro-bus-superlong-type-trunk-1.jpg','micro-bus-superlong-type-trunk-2.jpg'
+)
+foreach ($f in $veh) {
+  foreach ($w in 640,1280) {
+    magick "$f" -resize ${w}x -strip -colorspace sRGB `
+      -define webp:method=6 -define webp:auto-filter=true `
+      -quality 90 "$([IO.Path]::GetFileNameWithoutExtension($f))-$w.webp"
+  }
+}
+```
+
 
 ``` powershell
 foreach ($w in 1280,1600) {
   magick "japan-scenery.jpg" -resize ${w}x -strip -colorspace sRGB `
     -define webp:method=6 -quality 80 "japan-scenery-$w.webp"
+}
+
+foreach ($w in 840) {
+  magick "reason-3.png" -resize ${w}x -strip -colorspace sRGB `
+    -define webp:method=6 -quality 100 "reason-3_$w.webp"
 }
 ```
 ``` powershell
