@@ -53,7 +53,7 @@ const Home: React.FC = () => {
                 <p className="text-2xl lg:text-3xl font-bold text-gray-600 leading-relaxed max-w-lg">
                   {t('hero.subtitle')}
                 </p>
-                <p className="text-lg text-gray-600 leading-relaxed max-w-lg">
+                <p className="text-lg text-gray-600 leading-relaxed max-w-lg whitespace-pre-line">
                   {t('hero.description')}
                 </p>
               </div>

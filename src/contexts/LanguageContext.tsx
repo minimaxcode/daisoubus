@@ -48,7 +48,7 @@ const translations = {
     // Hero section
     'hero.title': 'すべては笑顔のために',
     'hero.subtitle': '大爽観光バス',
-    'hero.description': 'お客様のニーズに合わせた最適な車種\nおよび旅程プランを提案し、\n今まで他社に実現ができなかった\n最大限に柔軟な対応を目指して行きます。',
+    'hero.description': 'お客様のニーズに合わせた最適な車種および旅程プランを提案し、今まで他社に実現ができなかった最大限に柔軟な対応を目指して行きます。',
     'hero.cta': 'お問い合わせ',
     
     // Services  
