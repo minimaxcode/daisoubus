@@ -347,11 +347,73 @@ const FullDocumentIframeRenderer: React.FC<{ content: string; className?: string
             html, body {
               margin: 0 !important;
               padding: 0 !important;
-              overflow: hidden !important;
+              overflow: auto !important;
               height: auto !important;
             }
           `;
           iframeDoc.head.appendChild(style);
+
+          // 链接处理：
+          // 1) 站内链接在顶层打开，避免在 iframe 内部再次嵌套站点
+          // 2) 目录锚点(#xxxx)平滑滚动到目标位置
+          const anchors = Array.from(iframeDoc.querySelectorAll('a[href]')) as HTMLAnchorElement[]
+          anchors.forEach((a) => {
+            const href = a.getAttribute('href') || ''
+            if (!href) return
+            if (href.startsWith('#')) {
+              a.addEventListener('click', (e) => {
+                const id = href.slice(1)
+                const target = iframeDoc.getElementById(id)
+                if (target) {
+                  e.preventDefault()
+                  try { target.scrollIntoView({ behavior: 'smooth', block: 'start' }) } catch { target.scrollIntoView() }
+                  // 滚动后重新计算高度
+                  setTimeout(() => {
+                    try {
+                      const h = Math.max(
+                        iframeDoc.documentElement.scrollHeight,
+                        iframeDoc.body.scrollHeight,
+                        iframeDoc.documentElement.offsetHeight,
+                        iframeDoc.body.offsetHeight,
+                        600,
+                      )
+                      setIframeHeight(h + 16)
+                    } catch {}
+                  }, 200)
+                }
+              })
+              return
+            }
+
+            // 绝对/相对站内链接 → 顶层打开
+            try {
+              const url = new URL(href, window.location.origin)
+              if (url.origin === window.location.origin) {
+                a.setAttribute('target', '_top')
+                a.setAttribute('rel', 'noopener')
+              } else {
+                // 外部链接默认新窗口
+                a.setAttribute('target', '_blank')
+                a.setAttribute('rel', 'noopener noreferrer')
+              }
+            } catch {
+              // 非法 URL 保持默认行为
+            }
+          })
+
+          // 当 hash 变化时（例如用户手动修改或浏览器行为），同步高度
+          iframe.contentWindow?.addEventListener('hashchange', () => {
+            try {
+              const h = Math.max(
+                iframeDoc.documentElement.scrollHeight,
+                iframeDoc.body.scrollHeight,
+                iframeDoc.documentElement.offsetHeight,
+                iframeDoc.body.offsetHeight,
+                600,
+              )
+              setIframeHeight(h + 16)
+            } catch {}
+          })
 
           // 等待外部资源加载
           setTimeout(() => {
@@ -399,9 +461,8 @@ const FullDocumentIframeRenderer: React.FC<{ content: string; className?: string
           opacity: isLoading ? 0 : 1,
           overflow: 'hidden'
         }}
-        sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
+        sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-top-navigation-by-user-activation"
         title="Complete HTML Document"
-        scrolling="no"
         onError={() => {
           setIsLoading(false);
         }}
