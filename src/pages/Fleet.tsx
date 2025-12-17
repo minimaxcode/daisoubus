@@ -32,6 +32,58 @@ const Fleet: React.FC = () => {
         capacity: t('fleet.large.capacity')
       }
     },
+    // Large-sized bus (Newest model year)
+    {
+      name: t('fleet.largeNewest'),
+      nameEn: t('fleet.largeNewest.name.en'),
+      seats: t('fleet.largeNewest.seats'),
+      description: t('fleet.largeNewest.description.detail'),
+      slides: [
+        { small: '/images/large-size-bus-newest-model-640.webp', large: '/images/large-size-bus-newest-model-1280.webp', alt: t('fleet.largeNewest') },
+        { small: '/images/large-size-bus-newest-model-internal-1-640.webp', large: '/images/large-size-bus-newest-model-internal-1-1280.webp', alt: t('fleet.largeNewest') },
+        { small: '/images/large-size-bus-newest-model-internal-2-640.webp', large: '/images/large-size-bus-newest-model-internal-2-1280.webp', alt: t('fleet.largeNewest') },
+        { small: '/images/large-size-bus-newest-model-trunk-1-640.webp', large: '/images/large-size-bus-newest-model-trunk-1-1280.webp', alt: t('fleet.largeNewest') },
+        { small: '/images/large-size-bus-newest-model-trunk-2-640.webp', large: '/images/large-size-bus-newest-model-trunk-2-1280.webp', alt: t('fleet.largeNewest') },
+      ] as CarouselSlide[],
+      features: [
+        t('fleet.largeNewest.feature1'),
+        t('fleet.largeNewest.feature2'),
+        t('fleet.largeNewest.feature3'),
+        t('fleet.largeNewest.feature4')
+      ],
+      specs: {
+        length: t('fleet.largeNewest.length'),
+        width: t('fleet.largeNewest.width'),
+        height: t('fleet.largeNewest.height'),
+        capacity: t('fleet.largeNewest.capacity')
+      }
+    },
+    // Large-sized bus (VIP type)
+    {
+      name: t('fleet.largeVip'),
+      nameEn: t('fleet.largeVip.name.en'),
+      seats: t('fleet.largeVip.seats'),
+      description: t('fleet.largeVip.description.detail'),
+      slides: [
+        { small: '/images/large-size-bus-vip-type-640.webp', large: '/images/large-size-bus-vip-type-1280.webp', alt: t('fleet.largeVip') },
+        { small: '/images/large-size-bus-vip-type-internal-1-640.webp', large: '/images/large-size-bus-vip-type-internal-1-1280.webp', alt: t('fleet.largeVip') },
+        { small: '/images/large-size-bus-vip-type-internal-2-640.webp', large: '/images/large-size-bus-vip-type-internal-2-1280.webp', alt: t('fleet.largeVip') },
+        { small: '/images/large-size-bus-vip-type-trunk-1-640.webp', large: '/images/large-size-bus-vip-type-trunk-1-1280.webp', alt: t('fleet.largeVip') },
+        { small: '/images/large-size-bus-vip-type-trunk-2-640.webp', large: '/images/large-size-bus-vip-type-trunk-2-1280.webp', alt: t('fleet.largeVip') },
+      ] as CarouselSlide[],
+      features: [
+        t('fleet.largeVip.feature1'),
+        t('fleet.largeVip.feature2'),
+        t('fleet.largeVip.feature3'),
+        t('fleet.largeVip.feature4')
+      ],
+      specs: {
+        length: t('fleet.largeVip.length'),
+        width: t('fleet.largeVip.width'),
+        height: t('fleet.largeVip.height'),
+        capacity: t('fleet.largeVip.capacity')
+      }
+    },
     {
       name: t('fleet.midsize'),
       nameEn: t('fleet.midsize.name.en'),
@@ -82,6 +134,32 @@ const Fleet: React.FC = () => {
         capacity: t('fleet.rosa.capacity')
       }
     },
+    // Micro bus Superlong type (second unit)
+    {
+      name: t('fleet.rosa2'),
+      nameEn: t('fleet.rosa2.name.en'),
+      seats: t('fleet.rosa2.seats'),
+      description: t('fleet.rosa2.description.detail'),
+      slides: [
+        { small: '/images/micro-bus-superlong-type-2-640.webp', large: '/images/micro-bus-superlong-type-2-1280.webp', alt: t('fleet.rosa2') },
+        { small: '/images/micro-bus-superlong-type-2-internal-1-640.webp', large: '/images/micro-bus-superlong-type-2-internal-1-1280.webp', alt: t('fleet.rosa2') },
+        { small: '/images/micro-bus-superlong-type-2-internal-2-640.webp', large: '/images/micro-bus-superlong-type-2-internal-2-1280.webp', alt: t('fleet.rosa2') },
+        { small: '/images/micro-bus-superlong-type-2-trunk-1-640.webp', large: '/images/micro-bus-superlong-type-2-trunk-1-1280.webp', alt: t('fleet.rosa2') },
+        { small: '/images/micro-bus-superlong-type-2-trunk-2-640.webp', large: '/images/micro-bus-superlong-type-2-trunk-2-1280.webp', alt: t('fleet.rosa2') },
+      ] as CarouselSlide[],
+      features: [
+        t('fleet.rosa2.feature1'),
+        t('fleet.rosa2.feature2'),
+        t('fleet.rosa2.feature3'),
+        t('fleet.rosa2.feature4')
+      ],
+      specs: {
+        length: t('fleet.rosa2.length'),
+        width: t('fleet.rosa2.width'),
+        height: t('fleet.rosa2.height'),
+        capacity: t('fleet.rosa2.capacity')
+      }
+    },
     {
       name: t('fleet.coaster'),
       nameEn: t('fleet.coaster.name.en'),
@@ -105,6 +183,30 @@ const Fleet: React.FC = () => {
         width: t('fleet.coaster.width'),
         height: t('fleet.coaster.height'),
         capacity: t('fleet.coaster.capacity')
+      }
+    },
+    // Micro-sized bus (No trunk)
+    {
+      name: t('fleet.microNoTrunk'),
+      nameEn: t('fleet.microNoTrunk.name.en'),
+      seats: t('fleet.microNoTrunk.seats'),
+      description: t('fleet.microNoTrunk.description.detail'),
+      slides: [
+        { small: '/images/mirco-size-bus-no-trunk-640.webp', large: '/images/mirco-size-bus-no-trunk-1280.webp', alt: t('fleet.microNoTrunk') },
+        { small: '/images/miro-size-bus-no-trunk-internal-1-640.webp', large: '/images/miro-size-bus-no-trunk-internal-1-1280.webp', alt: t('fleet.microNoTrunk') },
+        { small: '/images/miro-size-bus-no-trunk-internal-2-640.webp', large: '/images/miro-size-bus-no-trunk-internal-2-1280.webp', alt: t('fleet.microNoTrunk') },
+      ] as CarouselSlide[],
+      features: [
+        t('fleet.microNoTrunk.feature1'),
+        t('fleet.microNoTrunk.feature2'),
+        t('fleet.microNoTrunk.feature3'),
+        t('fleet.microNoTrunk.feature4')
+      ],
+      specs: {
+        length: t('fleet.microNoTrunk.length'),
+        width: t('fleet.microNoTrunk.width'),
+        height: t('fleet.microNoTrunk.height'),
+        capacity: t('fleet.microNoTrunk.capacity')
       }
     },
     {

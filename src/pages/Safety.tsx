@@ -205,13 +205,13 @@ const Safety: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <div className="lg:w-[50%] w-full flex justify-center">
+              {/* <div className="lg:w-[50%] w-full flex justify-center">
                 <img
                   src="/images/safety-training.jpg"
                   alt={t('safety.training.image.alt')}
                   className="rounded-2xl shadow-xl max-w-full max-h-96 object-contain"
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

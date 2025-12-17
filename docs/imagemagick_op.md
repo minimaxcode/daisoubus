@@ -21,8 +21,20 @@ foreach ($f in $veh) {
 ```
 ``` powershell
 $veh = @(
-  'micro-bus-superlong-type-internal-1.jpg','micro-bus-superlong-type-internal-2.jpg',
-  'micro-bus-superlong-type-trunk-1.jpg','micro-bus-superlong-type-trunk-2.jpg'
+  'large-size-bus-newest-model.jpg','large-size-bus-newest-model-internal-1.jpg',
+  'large-size-bus-newest-model-internal-2.jpg','large-size-bus-newest-model-trunk-1.jpg',
+  'large-size-bus-newest-model-trunk-2.jpg',
+  'large-size-bus-vip-type.jpg','large-size-bus-vip-type-internal-1.jpg',
+  'large-size-bus-vip-type-internal-2.jpg','large-size-bus-vip-type-trunk-1.jpg',
+  'large-size-bus-vip-type-trunk-2.jpg',
+  'mirco-size-bus-no-trunk.jpg','miro-size-bus-no-trunk-internal-1.jpg',
+  'miro-size-bus-no-trunk-internal-2.jpg',
+  'micro-bus-superlong-type-2.jpg','micro-bus-superlong-type-2-internal-1.jpg',
+  'micro-bus-superlong-type-2-internal-2.jpg','micro-bus-superlong-type-2-trunk-1.jpg',
+  'micro-bus-superlong-type-2-trunk-2.jpg'
+)
+$veh = @(
+  'micro-bus-superlong-type-2.jpg'
 )
 foreach ($f in $veh) {
   foreach ($w in 640,1280) {

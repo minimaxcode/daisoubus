@@ -297,8 +297,8 @@ const Home: React.FC = () => {
                 name: t('fleet.rosa'),
                 seats: t('fleet.rosa.seats'),
                 description: t('fleet.rosa.description'),
-                imageSmall: '/images/micro-bus-superlong-type-640.webp',
-                imageLarge: '/images/micro-bus-superlong-type-1280.webp'
+                imageSmall: '/images/micro-bus-superlong-type-2-640.webp',
+                imageLarge: '/images/micro-bus-superlong-type-2-1280.webp'
               },
               {
                 name: t('fleet.coaster'),
