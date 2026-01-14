@@ -33,9 +33,6 @@ $veh = @(
   'micro-bus-superlong-type-2-internal-2.jpg','micro-bus-superlong-type-2-trunk-1.jpg',
   'micro-bus-superlong-type-2-trunk-2.jpg'
 )
-$veh = @(
-  'micro-bus-superlong-type-2.jpg'
-)
 foreach ($f in $veh) {
   foreach ($w in 640,1280) {
     magick "$f" -resize ${w}x -strip -colorspace sRGB `
