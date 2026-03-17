@@ -186,7 +186,8 @@ const Fleet: React.FC = () => {
       }
     },
     // Micro-sized bus (No trunk)
-    {
+    // マイクロバス（トランク無しタイプ）已出售，屏蔽展示
+    /* {
       name: t('fleet.microNoTrunk'),
       nameEn: t('fleet.microNoTrunk.name.en'),
       seats: t('fleet.microNoTrunk.seats'),
@@ -208,7 +209,7 @@ const Fleet: React.FC = () => {
         height: t('fleet.microNoTrunk.height'),
         capacity: t('fleet.microNoTrunk.capacity')
       }
-    },
+    }, */
     {
       name: t('fleet.vip'),
       nameEn: t('fleet.vip.name.en'),

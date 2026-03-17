@@ -149,7 +149,7 @@ const translations = {
     'fleet.midsize.description.detail': 'ゆったり前後スペース・トランク2基',
     'fleet.rosa.description.detail': 'マイクロバスの中一番トランクの大きい',
     'fleet.coaster.description.detail': 'スタイリッシュのボディにビジネス向き',
-    'fleet.vip.description.detail': 'マイクロバスの中一番トランクの大きい',
+    'fleet.vip.description.detail': 'ラングジュアリータイプマイクロバス',
     'fleet.commuter.description.detail': '小旅行に最適',
     
     // Contact
@@ -167,7 +167,7 @@ const translations = {
     'footer.company': '大爽合同会社',
     'footer.address': '〒270-1102 千葉県我孫子市都12-31',
     'footer.phone': '+81-471-61-2355',
-    'footer.email': 'c.sawamura55@gmail.com',
+    'footer.email': 'info@daisoubus.jp',
     
     // News Detail
     'news.share.copied': 'URLをコピーしました',
@@ -696,7 +696,7 @@ const translations = {
     'fleet.midsize.description.detail': 'Spacious legroom and dual trunk compartments',
     'fleet.rosa.description.detail': 'The largest trunk among microbuses',
     'fleet.coaster.description.detail': 'Stylish body design, business-oriented',
-    'fleet.vip.description.detail': 'The largest trunk among microbuses',
+    'fleet.vip.description.detail': 'Luxury-type microbus',
     'fleet.commuter.description.detail': 'Perfect for small trips',
     
     // Contact
@@ -714,7 +714,7 @@ const translations = {
     'footer.company': 'DAISOU LLC',
     'footer.address': '〒270-1102 12-31 Miyako, Abiko-shi, Chiba',
     'footer.phone': '+81-471-61-2355',
-    'footer.email': 'c.sawamura55@gmail.com',
+    'footer.email': 'info@daisoubus.jp',
     
     // News Detail
     'news.share.copied': 'URL copied to clipboard',
