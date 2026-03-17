@@ -46,7 +46,7 @@ const Privacy: React.FC = () => {
       contact: {
           icon: <Mail className="h-5 w-5 text-daisou-accent mr-3" />,
           title: "第7条：お問い合わせ窓口",
-          content: "本ポリシーに関するお問い合わせは、下記の窓口までお願いいたします。\n社名：大爽観光バス株式会社\n住所：〒270-1142 千葉県我孫子市都12-31\n担当部署：個人情報管理担当\nEメール：c.sawamura55@gmail.com"
+          content: "本ポリシーに関するお問い合わせは、下記の窓口までお願いいたします。\n社名：大爽観光バス株式会社\n住所：〒270-1142 千葉県我孫子市都12-31\n担当部署：個人情報管理担当\nEメール：info@daisoubus.jp"
       }
     },
     en: {
@@ -89,7 +89,7 @@ const Privacy: React.FC = () => {
        contact: {
           icon: <Mail className="h-5 w-5 text-daisou-accent mr-3" />,
           title: "Article 7: Contact Information",
-          content: "For inquiries regarding this policy, please contact us at the following:\nCompany Name: DAISOU Travel Bus Inc.\nAddress: 12-31 Miyako, Abiko City, Chiba, 270-1142, Japan\nDepartment: Personal Information Management Officer\nEmail: c.sawamura55@gmail.com"
+          content: "For inquiries regarding this policy, please contact us at the following:\nCompany Name: DAISOU Travel Bus Inc.\nAddress: 12-31 Miyako, Abiko City, Chiba, 270-1142, Japan\nDepartment: Personal Information Management Officer\nEmail: info@daisoubus.jp"
       }
     }
   };

@@ -93,7 +93,7 @@ Local → Connect → Production Host
 ### 阶段4：前端配置更新
 ```env
 # .env.production
-VITE_WP_API_URL=https://daisoubus.com/wp-json/wp/v2
+VITE_WP_API_URL=https://daisoubus.jp/wp-json/wp/v2
 VITE_USE_MOCK_DATA=false
 ```
 
@@ -135,7 +135,7 @@ add_action('rest_api_init', function() {
 ### 问题2：URL路径问题
 ```javascript
 // 确保API URL正确
-const API_URL = process.env.VITE_WP_API_URL || 'https://daisoubus.com/wp-json/wp/v2';
+const API_URL = process.env.VITE_WP_API_URL || 'https://daisoubus.jp/wp-json/wp/v2';
 ```
 
 ### 问题3：SSL混合内容

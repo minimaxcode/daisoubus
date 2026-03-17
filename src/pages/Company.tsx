@@ -99,8 +99,8 @@ const Company: React.FC = () => {
                 { label: t('company.basic.established'), value: t('company.basic.established.value') },
                 { label: t('company.basic.address'), value: t('company.basic.address.value') },
                 { label: t('company.basic.phone'), value: '+81-471-61-2355' },
-                { label: t('company.basic.email'), value: 'c.sawamura55@gmail.com' },
-                { label: t('company.basic.website'), value: 'https://daisoubus.com' }
+                { label: t('company.basic.email'), value: 'info@daisoubus.jp' },
+                { label: t('company.basic.website'), value: 'https://daisoubus.jp' }
               ].map((item, index) => (
                 <div key={index} className="flex flex-col sm:flex-row sm:items-start">
                   <div className="w-auto sm:w-32 lg:w-28 xl:w-32 font-semibold text-daisou-text mb-1 sm:mb-0 sm:flex-shrink-0">

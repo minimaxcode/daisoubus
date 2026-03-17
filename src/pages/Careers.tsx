@@ -107,7 +107,7 @@ const Careers: React.FC = () => {
             title: "応募連絡先",
             methods: [
               { method: "電話で応募", detail: "080-6588-4932（担当：澤村）", time: "平日 9:00-18:00" },
-              { method: "メールで応募", detail: "c.sawamura55@gmail.com", time: "24時間受付" }
+              { method: "メールで応募", detail: "info@daisoubus.jp", time: "24時間受付" }
             ],
             documents_title: "必要書類",
             documents: [
@@ -220,7 +220,7 @@ const Careers: React.FC = () => {
             title: "Application Contact",
             methods: [
               { method: "Apply by Phone", detail: "080-6588-4932 (Attn: Sawamura)", time: "Weekdays 9:00-18:00" },
-              { method: "Apply by Email", detail: "c.sawamura55@gmail.com", time: "24/7" }
+              { method: "Apply by Email", detail: "info@daisoubus.jp", time: "24/7" }
             ],
             documents_title: "Required Documents",
             documents: [

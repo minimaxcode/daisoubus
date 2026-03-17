@@ -269,7 +269,10 @@ scp -P 22 -r -i "$env:USERPROFILE\.ssh\id_rsa" dist/assets/* daisuobus@daisuobus
 # 如果有新的图片或其他资源
 scp -P 22 -r -i "$env:USERPROFILE\.ssh\id_rsa" public/images/* daisuobus@daisuobus.sakura.ne.jp:/home/daisuobus/www/images/
 
-scp -P 22 -r -i "$env:USERPROFILE\.ssh\id_rsa" public/icons/* daisuobus@daisuobus.sakura.ne.jp:/home/daisuobus/www/icons/
+# 注意：/icons 在该主机环境下可能被服务器保留/重写，导致始终 404。
+# 因此将站点图标统一部署到 /images/icons/ 并在 index.html 中引用 /images/icons/...
+ssh -p 22 -i "$env:USERPROFILE\.ssh\id_rsa" daisuobus@daisuobus.sakura.ne.jp "mkdir -p /home/daisuobus/www/images/icons"
+scp -P 22 -r -i "$env:USERPROFILE\.ssh\id_rsa" public/icons/* daisuobus@daisuobus.sakura.ne.jp:/home/daisuobus/www/images/icons/
 ```
 
 #### **6.4 设置文件权限**
@@ -282,7 +285,7 @@ cd /home/daisuobus/www/
 chmod 644 index.html
 chmod -R 644 assets/*
 chmod -R 755 images/
-chmod -R 755 icons/
+chmod -R 755 images/icons/
 ```
 
 ---

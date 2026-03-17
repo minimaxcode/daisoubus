@@ -112,7 +112,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-daisou-text mb-1">{t('contact.info.email')}</h3>
-                    <p className="text-gray-600">c.sawamura55@gmail.com</p>
+                    <p className="text-gray-600">info@daisoubus.jp</p>
                   </div>
                 </div>
 

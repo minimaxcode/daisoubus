@@ -76,7 +76,7 @@ In addition, a brand-new mid-size coach has joined our fleet to meet growing dem
 | 設立 | Founded | 2019 年 4 月 |
 | 所在地 | Address | 〒270-1102 千葉県我孫子市都12-31 |
 | TEL／FAX | Phone/Fax | +81-471-61-2355 |
-| E-mail |  | c.sawamura55@gmail.com |
+| E-mail |  | info@daisoubus.jp |
 | Web |  | <https://daisoubus.com> |
 | SNS |  | LINE: fanta0505 / WeChat: pandababy20 / Facebook: /profile.php?id=100070317061493 |
 | 事業内容 | Services | 貸切バス／観光案内／レンタカー／ジム運営<br>Private charter bus, travel arrangement, car rental, gym management |
